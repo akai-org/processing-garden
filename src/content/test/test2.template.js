@@ -4,7 +4,7 @@ export const codeTemplate = () => `
 import * as p5 from 'p5';
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(100, 100);
 }
 
 function draw() {
