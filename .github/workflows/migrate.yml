@@ -16,3 +16,5 @@ jobs:
         run: npm run prisma:generate
       - name: Run migrations
         run: npm run prisma:migrate
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
