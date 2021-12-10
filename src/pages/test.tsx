@@ -37,7 +37,6 @@ export default function Test() {
       onChange={(value = '') => setCode(value)}
       language="javascript"
       theme="vs-dark"
-      options={{}}
     />
   );
 
