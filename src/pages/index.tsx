@@ -1,14 +1,18 @@
-import Head from "next/head";
+import Head from 'next/head';
+import { Heading } from '@chakra-ui/react';
 
 export default function Home() {
   return (
     <div className="container">
       <Head>
-        <title>Create Next App</title>
+        <title>Processing Garden</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>Home</main>
+      <Heading as="h1">Processing Garden</Heading>
+      <Heading as="h4" size={'sm'}>
+        Bitches...
+      </Heading>
     </div>
   );
 }

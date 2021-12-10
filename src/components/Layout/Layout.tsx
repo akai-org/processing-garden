@@ -1,14 +1,12 @@
-// components/layout.js
-
-// import Navbar from './navbar'
-// import Footer from './footer'
+import { Container } from '@chakra-ui/react';
+import Navbar from 'components/Navbar/Navbar';
 import { FC } from 'react';
 
 const Layout: FC = ({ children }) => {
   return (
     <>
-      {/* <Navbar /> */}
-      <main>{children}</main>
+      <Navbar />
+      <Container maxW="container.xl">{children}</Container>
       {/* <Footer /> */}
     </>
   );
