@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+import Navbar from '../components/Navbar/index';
 
 const colors = {
   brand: {
@@ -30,7 +31,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <ChakraProvider theme={theme}>lalal</ChakraProvider>
+      <ChakraProvider theme={theme}>
+        <Navbar />
+      </ChakraProvider>
     </div>
   );
 }
