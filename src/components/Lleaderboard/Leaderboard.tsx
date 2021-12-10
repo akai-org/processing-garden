@@ -16,6 +16,8 @@ import {
   Tr,
 } from '@chakra-ui/react';
 import React from 'react';
+import dayjs from 'dayjs'
+import duration from 'dayjs/plugin/duration'
 
 export interface User {
   displayName: string;
@@ -31,8 +33,6 @@ interface Props {
   records: Record[];
 }
 
-const header = ['name', 'created', 'actions'];
-
 const Leaderboard: React.FC<Props> = ({ records }) => {
   const users: User[] = [
     { displayName: 'Segun Adebayo', avatarUrl: 'sage@chakra.com' },
@@ -40,13 +40,14 @@ const Leaderboard: React.FC<Props> = ({ records }) => {
     { displayName: 'Lazar Nikolov', avatarUrl: 'Lazar@mail.com' },
     { displayName: 'Abraham', avatarUrl: 'abraham@anu.com' },
   ];
+  dayjs.extend(duration)
   return (
     <Flex
       w="full"
-      bg="gray.600"
       p={50}
       alignItems="center"
       justifyContent="center"
+      shadow={'lg'}
     >
       <Table w="full" bg={useColorModeValue('white', 'gray.800')}>
         <Thead>
@@ -62,7 +63,8 @@ const Leaderboard: React.FC<Props> = ({ records }) => {
               <Tr key={index}>
                 <Td>#{index + 1}</Td>
                 <Td>{record.user.displayName}</Td>
-                <Td>{record.duration}</Td>
+                {console.log(record.duration)}
+                <Td>{dayjs.duration(record.duration, "seconds").format('mm:ss')}</Td>
               </Tr>
             );
           })}
