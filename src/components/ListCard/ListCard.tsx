@@ -17,8 +17,8 @@ const ListCard = ({ content, type }: any) => {
       fontSize="sm"
       fontWeight="700"
       rounded="md"
-      href={`/learning/${content.index + 1}`}
-      key={content.index + 1}
+      href={`/learning/${content.index}`}
+      key={content.index}
       textDecoration="none!important"
     >
       <Flex pt={10} w="full" alignItems="center" justifyContent="center">
@@ -42,7 +42,7 @@ const ListCard = ({ content, type }: any) => {
                 rounded="md"
                 _hover={{ bg: 'gray.500' }}
               >
-                {type} {content.index + 1}
+                {type} {content.index}
               </Text>
             </Flex>
 

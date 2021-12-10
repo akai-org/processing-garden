@@ -8,16 +8,26 @@ const Learning: FC = ({ files, learnConetntList }: any) => {
 
   return (
     <>
-      {learnConetntList?.map((learnArticle: any, i: number) => (
-        <ListCard content={{ ...learnArticle, index: i }} type="Tutorial" />
-      ))}
+      {files?.map((dirName: string) => {
+        const {
+          title,
+          description,
+        } = require(`content/learning/${dirName}/meta.ts`);
+
+        return (
+          <ListCard
+            key={dirName}
+            content={{ title, description, index: dirName }}
+            type="Tutorial"
+          />
+        );
+      })}
     </>
   );
 };
 
 export async function getServerSideProps() {
   const files = fs.readdirSync(path.join('src/content/learning'));
-  console.log(files);
 
   const learnConetntList = [
     {
