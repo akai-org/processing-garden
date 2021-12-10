@@ -4,13 +4,16 @@ body {
 
 .sp-wrapper {
   width: 50% !important;
-  height: 100vh !important;
 }
 
 .sp-preview-iframe {
   background-color: rgb(26, 32, 43);
 }
 
-.sp-stack {
-  height: 100vh !important;
+.sp-preview-actions {
+  display: none;
+}
+
+.sp-cube-wrapper {
+  display: none !important;
 }

@@ -9,7 +9,6 @@ import {
 import { ChevronRightIcon } from '@chakra-ui/icons';
 
 const ListCard = ({ content, type }: any) => {
-  console.log(content);
   return (
     <Link
       px={3}

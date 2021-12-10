@@ -1,8 +1,11 @@
 import { FC } from 'react';
 import { ListCard } from '../../components';
+import fs from 'fs';
+import path from 'path';
 
-const Learning: FC = ({ learnConetntList }: any) => {
-  console.log(2, learnConetntList);
+const Learning: FC = ({ files, learnConetntList }: any) => {
+  console.log(files);
+
   return (
     <>
       {learnConetntList?.map((learnArticle: any, i: number) => (
@@ -13,6 +16,9 @@ const Learning: FC = ({ learnConetntList }: any) => {
 };
 
 export async function getServerSideProps() {
+  const files = fs.readdirSync(path.join('src/content/learning'));
+  console.log(files);
+
   const learnConetntList = [
     {
       id: 1,
@@ -27,7 +33,7 @@ export async function getServerSideProps() {
   ];
 
   return {
-    props: { learnConetntList },
+    props: { files, learnConetntList },
   };
 }
 
