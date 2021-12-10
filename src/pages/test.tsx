@@ -37,11 +37,8 @@ export default function Test() {
       onChange={(value = '') => setCode(value)}
       language="javascript"
       theme="vs-dark"
-<<<<<<< HEAD
       options={{}}
       // className={styles.editor}
-=======
->>>>>>> 37b300c24f92d0a1542b328a774eb78acbf13258
     />
   );
 
