@@ -9,6 +9,7 @@ import React from 'react';
 import { Flex } from '@chakra-ui/react';
 import styles from './test.module.scss';
 import '@codesandbox/sandpack-react/dist/index.css';
+import ColumnWrapper from 'components/ColumnWrapper/ColumnWrapper';
 
 const template = `import * as p5 from 'p5';
 
@@ -31,42 +32,36 @@ window.keyPressed = keyPressed;`;
 export default function Test() {
   const [code, setCode] = React.useState(template);
 
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+  const editor = <Editor
+  width="50vw"
+  height="100vh"
+  value={code}
+  onChange={(value = '') => setCode(value)}
+  language="javascript"
+  theme="vs-dark"
+  options={{}}
+  // className={styles.editor}
+/>;
 
-      <Flex>
-        <Editor
-          width="50vw"
-          height="100vh"
-          value={code}
-          onChange={(value = '') => setCode(value)}
-          language="javascript"
-          theme="vs-dark"
-          options={{}}
-          // className={styles.editor}
-        />
-        <SandpackProvider
-          template="react-ts"
-          customSetup={{
-            entry: '/index.js',
-            dependencies: { p5: 'latest' },
-            files: {
-              '/index.js': {
-                code: code,
-                active: true,
-              },
-            },
-          }}
-        >
-          <SandpackThemeProvider>
-            <SandpackPreview showRefreshButton={false} />
-          </SandpackThemeProvider>
-        </SandpackProvider>
-      </Flex>
-    </div>
+const preview = <SandpackProvider
+template="react-ts"
+customSetup={{
+  entry: '/index.js',
+  dependencies: { p5: 'latest' },
+  files: {
+    '/index.js': {
+      code: code,
+      active: true,
+    },
+  },
+}}
+>
+<SandpackThemeProvider>
+  <SandpackPreview showRefreshButton={false} />
+</SandpackThemeProvider>
+</SandpackProvider>;
+
+  return (
+      <ColumnWrapper leftContent={editor} rightContent={preview} />
   );
 }
