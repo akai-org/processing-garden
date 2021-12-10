@@ -7,6 +7,7 @@ import Editor from '@monaco-editor/react';
 import React from 'react';
 import '@codesandbox/sandpack-react/dist/index.css';
 import ColumnWrapper from 'components/ColumnWrapper/ColumnWrapper';
+import Leaderboard, { User, Record } from 'components/Lleaderboard/Leaderboard';
 
 const template = `import * as p5 from 'p5';
 
@@ -60,5 +61,7 @@ export default function Test() {
     </SandpackProvider>
   );
 
-  return <ColumnWrapper leftContent={editor} rightContent={preview} />;
+  const records: Record[] = [{user: {avatarUrl: 'some URL', displayName: 'Bilbo Baggins'}, duration: 75}, {user: {avatarUrl: 'some URL', displayName: 'Bilbo Baggins'}, duration: 75}, {user: {avatarUrl: 'some URL', displayName: 'Bilbo Baggins'}, duration: 75}];
+
+  return <Leaderboard records={records} />;
 }
