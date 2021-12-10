@@ -57,7 +57,7 @@ const Leaderboard: React.FC<Props> = ({ records }) => {
           {records.map((record, index) => {
             const formatedDuration = dayjs
               .duration(record.duration, 'seconds')
-              .format(record.duration >= secondsInHour ? 'H:mm:ss' : 'mm:ss');
+              .format('ss:mm:SSS');
             return (
               <Tr key={index}>
                 <Td>#{index + 1}</Td>

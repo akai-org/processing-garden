@@ -64,7 +64,7 @@ export default function Test() {
   const records: Record[] = [
     {
       user: { avatarUrl: 'some URL', displayName: 'Bilbo Baggins' },
-      duration: 175,
+      duration: 175.254,
     },
     {
       user: { avatarUrl: 'some URL', displayName: 'Bilbo Baggins' },
