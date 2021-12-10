@@ -4,10 +4,7 @@ import {
   SandpackThemeProvider,
 } from '@codesandbox/sandpack-react';
 import Editor from '@monaco-editor/react';
-import Head from 'next/head';
 import React from 'react';
-import { Flex } from '@chakra-ui/react';
-import styles from './test.module.scss';
 import '@codesandbox/sandpack-react/dist/index.css';
 import ColumnWrapper from 'components/ColumnWrapper/ColumnWrapper';
 
@@ -40,8 +37,11 @@ export default function Test() {
       onChange={(value = '') => setCode(value)}
       language="javascript"
       theme="vs-dark"
+<<<<<<< HEAD
       options={{}}
       // className={styles.editor}
+=======
+>>>>>>> 37b300c24f92d0a1542b328a774eb78acbf13258
     />
   );
 
