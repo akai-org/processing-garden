@@ -1,0 +1,20 @@
+name: Migrate database
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install modules
+        run: npm ci
+      - name: Generate Prisma client
+        run: npm run prisma:generate
+      - name: Run migrations
+        run: npm run prisma:migrate
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
