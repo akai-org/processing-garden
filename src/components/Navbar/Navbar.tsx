@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import { useRouter } from 'next/router';
-import Link from 'next/Link';
+import Link from 'next/link';
 
 const routesIndexes: { [key: string]: number } = {
   ['/learning']: 0,
