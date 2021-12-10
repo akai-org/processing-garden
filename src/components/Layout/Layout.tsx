@@ -7,7 +7,6 @@ const Layout: FC = ({ children }) => {
     <>
       <Navbar />
       <Container maxW="container.xl">{children}</Container>
-      {/* <Footer /> */}
     </>
   );
 };
