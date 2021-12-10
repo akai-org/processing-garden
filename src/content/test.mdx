@@ -1,0 +1,55 @@
+import { SandpackPreview, SandpackProvider } from '@codesandbox/sandpack-react';
+import { codeTemplate, correctValue } from './test.template';
+import { ResultInput, SandpackWrapper } from './../components/index';
+
+# Code and Focus
+
+Code Hike will apply syntax highlighting to any code block
+
+```js focus=2
+function lorem(ipsum, dolor = 1) {
+  const sit = ipsum == null ? 0 : ipsum.sit;
+  dolor = sit - amet(dolor);
+  return sit ? consectetur(ipsum) : [];
+}
+```
+
+It works by default with many languages
+
+For example you can pront some shape and color him green, rectangle:
+
+<SandpackWrapper>
+  <SandpackProvider
+    customSetup={{
+      entry: '/index.js',
+      dependencies: { p5: 'latest' },
+      files: {
+        '/index.js': {
+          {/* code: renderTemplate(), */}
+          active: true,
+        },
+      },
+    }}
+  >
+    <SandpackPreview />
+  </SandpackProvider>
+</SandpackWrapper>
+
+```js
+function setup() {
+  createCanvas(400, 400);
+}
+
+function draw() {
+```
+
+<ResultInput
+  onChange={props.handleChange}
+  correctValue={correctValue}
+  onSuccess={props.onSuccess}
+  template={codeTemplate}
+/>
+
+```js
+}
+```
