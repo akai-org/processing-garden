@@ -7,7 +7,7 @@ import Editor from '@monaco-editor/react';
 import Head from 'next/head';
 import React from 'react';
 import { Flex } from '@chakra-ui/react';
-import styles from './test.module.sass';
+import styles from './test.module.scss';
 import '@codesandbox/sandpack-react/dist/index.css';
 
 const template = `import * as p5 from 'p5';
