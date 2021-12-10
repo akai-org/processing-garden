@@ -1,10 +1,3 @@
-import {
-  SandpackPreview,
-  SandpackProvider,
-  SandpackThemeProvider,
-} from '@codesandbox/sandpack-react';
-import Editor from '@monaco-editor/react';
-import Head from 'next/head';
 import React from 'react';
 import { Flex } from '@chakra-ui/react';
 import styles from './ColumnWrapper.module.scss';
@@ -16,14 +9,8 @@ interface Props {
 }
 
 const ColumnWrapper: React.FC<Props> = ({ leftContent, rightContent }) => {
-
   return (
     <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <Flex>
         {leftContent}
         {rightContent}
