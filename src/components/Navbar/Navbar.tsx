@@ -6,7 +6,6 @@ import {
   Flex,
   HStack,
   IconButton,
-  Link,
   Spacer,
   Tab,
   TabList,
@@ -15,6 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import { useRouter } from 'next/router';
+import Link from 'next/Link';
 
 const routesIndexes: { [key: string]: number } = {
   ['/learning']: 0,
@@ -91,17 +91,17 @@ export default function Navbar() {
       >
         <Tabs borderBottomColor="transparent" defaultIndex={defaultIndex}>
           <TabList>
-            <Link href="learning">
+            <Link href="/learning">
               <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
                 Learning
               </Tab>
             </Link>
-            <Link href="challanges">
+            <Link href="/challanges">
               <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
                 Challanges
               </Tab>
             </Link>
-            <Link href="sandbox">
+            <Link href="/sandbox">
               <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
                 Sandbox
               </Tab>
