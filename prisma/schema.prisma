@@ -14,4 +14,31 @@ model User {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  Progress    Progress[]
+  SandboxUser SandboxUser[]
+}
+
+model Progress {
+  id         String @id @default(uuid())
+  task       String // learning, games - snake, tic-tac-toe
+  stepNumber Int
+  points     Int
+  user       User   @relation(fields: [userId], references: [id])
+  userId     String
+}
+
+model Sandbox {
+  id          String        @id @default(uuid())
+  code        String
+  SandboxUser SandboxUser[]
+}
+
+model SandboxUser {
+  sandbox   Sandbox @relation(fields: [sandboxId], references: [id])
+  sandboxId String
+  user      User    @relation(fields: [userId], references: [id])
+  userId    String
+
+  @@id([userId, sandboxId])
 }
