@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import { useRouter } from 'next/router';
-import Link from 'next/Link';
+import Link from 'next/link';
 
 const routesIndexes: { [key: string]: number } = {
   ['/learning']: 0,
@@ -26,8 +26,6 @@ export default function Navbar() {
   const bg = useColorModeValue('white', 'gray.800');
 
   const { pathname } = useRouter();
-
-  console.log(pathname);
 
   const defaultIndex: number = routesIndexes?.[pathname];
 
@@ -50,18 +48,17 @@ export default function Navbar() {
                 fontSize="20px"
                 color={useColorModeValue('gray.800', 'inherit')}
                 variant="ghost"
-                icon={<div>lalal</div>}
-                onClick={() => console.log(5)}
               />
             </Box>
-            <chakra.a
-              href="/"
-              title="Choc Home Page"
-              display="flex"
-              alignItems="center"
-            >
-              <div>PLCAE FOR LOGO</div>
-            </chakra.a>
+            <Link passHref href="/">
+              <chakra.a
+                title="Choc Home Page"
+                display="flex"
+                alignItems="center"
+              >
+                <div>PLCAE FOR LOGO</div>
+              </chakra.a>
+            </Link>
             <chakra.h1 fontSize="xl">Processing garden</chakra.h1>
           </HStack>
           <HStack spacing={3} display="flex" alignItems="center">
