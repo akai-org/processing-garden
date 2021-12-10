@@ -1,7 +1,14 @@
-import { SandpackPreview, SandpackProvider } from '@codesandbox/sandpack-react';
+import {
+  SandpackPreview,
+  SandpackProvider,
+  SandpackThemeProvider,
+} from '@codesandbox/sandpack-react';
 import Editor from '@monaco-editor/react';
 import Head from 'next/head';
 import React from 'react';
+import { Flex } from '@chakra-ui/react';
+import styles from './test.module.scss';
+import '@codesandbox/sandpack-react/dist/index.css';
 
 const template = `import * as p5 from 'p5';
 
@@ -25,23 +32,25 @@ export default function Test() {
   const [code, setCode] = React.useState(template);
 
   return (
-    <div className="container">
+    <div className={styles.container}>
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+      <Flex>
         <Editor
-          width="40vw"
-          height="40vh"
+          width="50vw"
+          height="100vh"
           value={code}
           onChange={(value = '') => setCode(value)}
           language="javascript"
           theme="vs-dark"
           options={{}}
+          // className={styles.editor}
         />
         <SandpackProvider
+          template="react-ts"
           customSetup={{
             entry: '/index.js',
             dependencies: { p5: 'latest' },
@@ -53,9 +62,11 @@ export default function Test() {
             },
           }}
         >
-          <SandpackPreview />
+          <SandpackThemeProvider>
+            <SandpackPreview showRefreshButton={false} />
+          </SandpackThemeProvider>
         </SandpackProvider>
-      </main>
+      </Flex>
     </div>
   );
 }
