@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { Heading } from '@chakra-ui/react';
+import Learning from 'pages/learning';
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       </Head>
 
       <Heading as="h1">Processing Garden</Heading>
+      <Learning />
       <Heading as="h4" size={'sm'}>
         Bitches...
       </Heading>
