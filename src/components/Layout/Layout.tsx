@@ -1,13 +1,10 @@
-// components/layout.js
-
-// import Navbar from './navbar'
-// import Footer from './footer'
+import Navbar from 'components/Navbar/Navbar';
 import { FC } from 'react';
 
 const Layout: FC = ({ children }) => {
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar />
       <main>{children}</main>
       {/* <Footer /> */}
     </>
