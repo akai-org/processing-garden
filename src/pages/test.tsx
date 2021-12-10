@@ -1,7 +1,7 @@
 import {
   SandpackPreview,
   SandpackProvider,
-  SandpackThemeProvider,
+  SandpackThemeProvider
 } from '@codesandbox/sandpack-react';
 import Editor from '@monaco-editor/react';
 import React from 'react';
@@ -37,8 +37,11 @@ export default function Test() {
       onChange={(value = '') => setCode(value)}
       language="javascript"
       theme="vs-dark"
+<<<<<<< HEAD
       options={{}}
       // className={styles.editor}
+=======
+>>>>>>> 26109676e28effac8009e688d422cbdb848cacca
     />
   );
 
@@ -56,7 +59,7 @@ export default function Test() {
         },
       }}
     >
-      <SandpackThemeProvider>
+      <SandpackThemeProvider theme={{}}>
         <SandpackPreview showRefreshButton={false} />
       </SandpackThemeProvider>
     </SandpackProvider>

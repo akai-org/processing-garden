@@ -1,14 +1,16 @@
-body{
-    margin: 0;
+body {
+  margin: 0;
 }
 
-.sp-wrapper{
-    width: 50% !important;
-    height: 100vh !important;
+.sp-wrapper {
+  width: 50% !important;
+  height: 100vh !important;
 }
-    
 
-.sp-stack{
-    height: 100vh !important;
+.sp-preview-iframe {
+  background-color: rgb(26, 32, 43);
 }
-    
+
+.sp-stack {
+  height: 100vh !important;
+}
