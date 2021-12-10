@@ -3,13 +3,21 @@ import { Layout } from 'components';
 
 import { AppProps } from 'next/app';
 import { theme } from '../theme';
+import Head from 'next/head';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <ChakraProvider theme={theme}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </ChakraProvider>
+    <>
+      <Head>
+        <title>Processing Garden</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <ChakraProvider theme={theme}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ChakraProvider>
+    </>
   );
 }
