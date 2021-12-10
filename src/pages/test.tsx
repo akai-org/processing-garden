@@ -61,7 +61,20 @@ export default function Test() {
     </SandpackProvider>
   );
 
-  const records: Record[] = [{user: {avatarUrl: 'some URL', displayName: 'Bilbo Baggins'}, duration: 175}, {user: {avatarUrl: 'some URL', displayName: 'Bilbo Baggins'}, duration: 75}, {user: {avatarUrl: 'some URL', displayName: 'Bilbo Baggins'}, duration: 75}];
+  const records: Record[] = [
+    {
+      user: { avatarUrl: 'some URL', displayName: 'Bilbo Baggins' },
+      duration: 175,
+    },
+    {
+      user: { avatarUrl: 'some URL', displayName: 'Bilbo Baggins' },
+      duration: 75,
+    },
+    {
+      user: { avatarUrl: 'some URL', displayName: 'Bilbo Baggins' },
+      duration: 11175,
+    },
+  ];
 
   return <Leaderboard records={records} />;
 }
