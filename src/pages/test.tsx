@@ -1,7 +1,7 @@
 import {
   SandpackPreview,
   SandpackProvider,
-  SandpackThemeProvider,
+  SandpackThemeProvider
 } from '@codesandbox/sandpack-react';
 import Editor from '@monaco-editor/react';
 import React from 'react';
@@ -54,7 +54,7 @@ export default function Test() {
         },
       }}
     >
-      <SandpackThemeProvider>
+      <SandpackThemeProvider theme={{}}>
         <SandpackPreview showRefreshButton={false} />
       </SandpackThemeProvider>
     </SandpackProvider>
