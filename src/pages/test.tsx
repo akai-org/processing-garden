@@ -32,36 +32,38 @@ window.keyPressed = keyPressed;`;
 export default function Test() {
   const [code, setCode] = React.useState(template);
 
-  const editor = <Editor
-  width="50vw"
-  height="100vh"
-  value={code}
-  onChange={(value = '') => setCode(value)}
-  language="javascript"
-  theme="vs-dark"
-  options={{}}
-  // className={styles.editor}
-/>;
-
-const preview = <SandpackProvider
-template="react-ts"
-customSetup={{
-  entry: '/index.js',
-  dependencies: { p5: 'latest' },
-  files: {
-    '/index.js': {
-      code: code,
-      active: true,
-    },
-  },
-}}
->
-<SandpackThemeProvider>
-  <SandpackPreview showRefreshButton={false} />
-</SandpackThemeProvider>
-</SandpackProvider>;
-
-  return (
-      <ColumnWrapper leftContent={editor} rightContent={preview} />
+  const editor = (
+    <Editor
+      width="50vw"
+      height="100vh"
+      value={code}
+      onChange={(value = '') => setCode(value)}
+      language="javascript"
+      theme="vs-dark"
+      options={{}}
+      // className={styles.editor}
+    />
   );
+
+  const preview = (
+    <SandpackProvider
+      template="react-ts"
+      customSetup={{
+        entry: '/index.js',
+        dependencies: { p5: 'latest' },
+        files: {
+          '/index.js': {
+            code: code,
+            active: true,
+          },
+        },
+      }}
+    >
+      <SandpackThemeProvider>
+        <SandpackPreview showRefreshButton={false} />
+      </SandpackThemeProvider>
+    </SandpackProvider>
+  );
+
+  return <ColumnWrapper leftContent={editor} rightContent={preview} />;
 }
