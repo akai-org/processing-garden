@@ -13,9 +13,23 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
+import { useRouter } from 'next/router';
+import Link from 'next/Link';
+
+const routesIndexes: { [key: string]: number } = {
+  ['/learning']: 0,
+  ['/challanges']: 1,
+  ['/sandbox']: 2,
+};
 
 export default function Navbar() {
   const bg = useColorModeValue('white', 'gray.800');
+
+  const { pathname } = useRouter();
+
+  console.log(pathname);
+
+  const defaultIndex: number = routesIndexes?.[pathname];
 
   return (
     <Box shadow="md">
@@ -75,17 +89,23 @@ export default function Navbar() {
         borderWidth={0}
         overflowX="auto"
       >
-        <Tabs defaultIndex={1} borderBottomColor="transparent">
+        <Tabs borderBottomColor="transparent" defaultIndex={defaultIndex}>
           <TabList>
-            <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
-              Learning
-            </Tab>
-            <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
-              Challanges
-            </Tab>
-            <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
-              Sandbox
-            </Tab>
+            <Link href="/learning">
+              <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
+                Learning
+              </Tab>
+            </Link>
+            <Link href="/challanges">
+              <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
+                Challanges
+              </Tab>
+            </Link>
+            <Link href="/sandbox">
+              <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
+                Sandbox
+              </Tab>
+            </Link>
           </TabList>
         </Tabs>
         <Spacer />
