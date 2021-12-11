@@ -15,7 +15,6 @@ import {
   Thead,
   Tr,
 } from '@chakra-ui/react';
-import React from 'react';
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 
@@ -48,16 +47,16 @@ const Leaderboard: React.FC<Props> = ({ records }) => {
       <Table w="full" bg={useColorModeValue('white', 'gray.800')}>
         <Thead>
           <Tr>
-            <Th>position</Th>
-            <Th>nick</Th>
-            <Th>Duration</Th>
+            <Th>Miejsce</Th>
+            <Th>Imię</Th>
+            <Th>Czas</Th>
           </Tr>
         </Thead>
         <Tbody>
           {records.map((record, index) => {
             const formatedDuration = dayjs
               .duration(record.duration, 'seconds')
-              .format('ss:mm:SSS');
+              .format('mm:ss');
             return (
               <Tr key={index}>
                 <Td>#{index + 1}</Td>
