@@ -7,10 +7,28 @@ import {
   Link,
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
+import Image from 'next/image';
 
-const ListCardContent = ({ content, type, isActive, href }: any) => {
+const ListCardContent = ({
+  content,
+  type,
+  isActive,
+  href,
+  wasFinished,
+}: any) => {
+  console.log(1234, wasFinished);
   return (
-    <Flex pt={10} alignItems="center" justifyContent="center">
+    <Flex
+      pt={10}
+      alignItems="center"
+      justifyContent="center"
+      position="relative"
+    >
+      {wasFinished && (
+        <Box position="absolute" top="60px" right="50px">
+          <Image src="/svg/star.svg" width={35} height={35} />
+        </Box>
+      )}
       <Box
         width="100%"
         rounded="lg"
@@ -64,7 +82,13 @@ const ListCardContent = ({ content, type, isActive, href }: any) => {
   );
 };
 
-const ListCard = ({ content, type, isActive = true, href }: any) => {
+const ListCard = ({
+  content,
+  type,
+  isActive = true,
+  href,
+  wasFinished = true,
+}: any) => {
   return (
     <>
       {isActive ? (
@@ -80,7 +104,12 @@ const ListCard = ({ content, type, isActive = true, href }: any) => {
           textDecoration="none!important"
           _focus={{ outline: 'none' }}
         >
-          <ListCardContent content={content} type={type} isActive={isActive} />
+          <ListCardContent
+            content={content}
+            type={type}
+            isActive={isActive}
+            wasFinished={wasFinished}
+          />
         </Link>
       ) : (
         <div>
@@ -100,6 +129,7 @@ const ListCard = ({ content, type, isActive = true, href }: any) => {
               content={content}
               type={type}
               isActive={isActive}
+              wasFinished={wasFinished}
             />
           </Box>
         </div>
