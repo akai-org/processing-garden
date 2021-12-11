@@ -30,7 +30,6 @@ type ProfileProps = {
 
 function Profile({ user, points, achievements }: ProfileProps) {
   const profileSession = useSession();
-  console.log({ profileSession });
 
   return (
     <Box mt={10}>
