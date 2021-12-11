@@ -20,12 +20,12 @@ model User {
 }
 
 model Progress {
-  id         String @id @default(uuid())
-  task       String // learning, games - snake, tic-tac-toe
-  stepNumber Int
-  points     Int
-  user       User   @relation(fields: [userId], references: [id])
-  userId     String
+  id     String @id @default(uuid())
+  taskId String // learning, games - snake, tic-tac-toe
+  stepId Int
+  points Int    @default(1)
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
 }
 
 model Sandbox {
