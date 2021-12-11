@@ -3,10 +3,13 @@ import { SandpackPreview, SandpackProvider } from '@codesandbox/sandpack-react';
 import Editor from '@monaco-editor/react';
 import { SandpackWrapper } from 'components';
 import ColumnWrapper from 'components/ColumnWrapper/ColumnWrapper';
+import Leaderboard, { Record } from 'components/Leaderboard/Leaderboard';
 import withAuth from 'hoc/withAuth';
 import { useRouter } from 'next/router';
 import { FC, useState } from 'react';
 import theme from '../../editorTheme.json';
+// @ts-ignore
+// import { diff } from 'imagediff/js/imagediff';
 
 // const handleStepFinished = async (id: string) => {
 //   return fetch(`/api/progress/learning/${id}`, {
@@ -15,22 +18,36 @@ import theme from '../../editorTheme.json';
 //   }).then((res) => res.json());
 // };
 
+const recordsInitial: Record[] = [
+  {
+    user: { avatarUrl: 'some URL', displayName: 'Bilbo' },
+    duration: 223,
+  },
+  {
+    user: { avatarUrl: 'some URL', displayName: 'Eddy' },
+    duration: 311,
+  },
+  {
+    user: { avatarUrl: 'some URL', displayName: 'Eric' },
+    duration: 509,
+  },
+];
+
 const renderTemplate = `import * as p5 from 'p5';
 
 function setup() {
   createCanvas(336, 250);
+  background(78, 122, 39);
+  strokeWeight(0);
+  fill(255, 147, 0)
+  rect(70, 50, 190, 150);
 }
 
-function draw() {
-  background(0, 255, 0);
-}
+window.setup = setup`;
 
-window.setup = setup;
-window.draw = draw;`;
-
-const renderSandpack = (code: string) => {
+const renderSandpack = (code: string, onClick: any) => {
   return (
-    <SandpackWrapper>
+    <SandpackWrapper onClick={onClick}>
       <SandpackProvider
         customSetup={{
           entry: '/index.js',
@@ -52,31 +69,46 @@ const renderSandpack = (code: string) => {
 const Challange: FC = () => {
   const router = useRouter();
   const [code, setCode] = useState(renderTemplate);
+  const [records, setRecords] = useState(recordsInitial);
+
+  const handleSubmit = () => {
+    setTimeout(
+      () =>
+        setRecords((records) => [
+          {
+            user: { avatarUrl: 'some URL', displayName: 'Danny' },
+            duration: 143,
+          },
+          ...records,
+        ]),
+      1000,
+    );
+  };
 
   const { id } = router.query;
-
-  const meta = id ? require(`content/challanges/${id}/meta.ts`) : null;
-  console.log(meta);
 
   if (id)
     return (
       <ColumnWrapper
         leftContent={
-          <Editor
-            options={{ minimap: { enabled: false } }}
-            width="50vw"
-            height="calc(100vh - 133px)"
-            value={code}
-            onChange={(value = '') => setCode(value)}
-            language="javascript"
-            onMount={(editor, monaco) => {
-              monaco.editor.defineTheme(
-                'vitesse-dark-processing-garden',
-                theme,
-              );
-              monaco.editor.setTheme('vitesse-dark-processing-garden');
-            }}
-          />
+          <Box display="flex" flexDirection="column">
+            <Editor
+              options={{ minimap: { enabled: false } }}
+              width="50vw"
+              height="40vh"
+              value={code}
+              onChange={(value = '') => setCode(value)}
+              language="javascript"
+              onMount={(editor, monaco) => {
+                monaco.editor.defineTheme(
+                  'vitesse-dark-processing-garden',
+                  theme,
+                );
+                monaco.editor.setTheme('vitesse-dark-processing-garden');
+              }}
+            />
+            <Leaderboard records={records} />
+          </Box>
         }
         rightContent={
           <Box style={{ padding: '15px' }} mb={0}>
@@ -93,7 +125,7 @@ const Challange: FC = () => {
               <Image src={`/challanges/${id}/image.png`} maxHeight={250} />
             </Box>
             Wynik:
-            {renderSandpack(code)}
+            {renderSandpack(code, handleSubmit)}
           </Box>
         }
       />

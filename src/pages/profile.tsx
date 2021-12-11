@@ -23,9 +23,6 @@ type ProfileProps = {
 };
 
 function Profile({ user }: ProfileProps) {
-  const profileSession = useSession();
-  console.log({ profileSession });
-
   return (
     <div>
       <chakra.h1>Profile</chakra.h1>
