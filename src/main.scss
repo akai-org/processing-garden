@@ -18,6 +18,11 @@ body {
   display: none !important;
 }
 
-.custom-sandpack-wrapper {
-  margin: 30px 0;
+.custom-sandpack-wrapper,
+.ch-code {
+  margin: 20px 0 !important;
+}
+
+.sp-stack {
+  margin-left: -8px;
 }
