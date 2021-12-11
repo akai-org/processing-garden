@@ -9,10 +9,20 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { signIn } from 'next-auth/react';
+import NextImage from 'next/image';
 
 export default function Home() {
   return (
-    <Box px={8} py={24} mx="auto">
+    <Box px={8} py={24} mx="auto" width="fit-content">
+      <Box
+        mb={10}
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
+        <NextImage src="/logo.png" width={200} height={200} />
+      </Box>
       <Box w={{ base: 'full' }} mx="auto" textAlign={'center'}>
         <chakra.h1
           mb={6}
@@ -30,7 +40,7 @@ export default function Home() {
             bgGradient="linear(to-r, green.400,purple.500)"
             fontWeight="extrabold"
           >
-            Processing Garden*
+            Processing Garden
           </Text>
           <br />
           to connect all
