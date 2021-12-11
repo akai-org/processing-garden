@@ -131,7 +131,7 @@ const Challange: FC = () => {
                 flexDirection: 'column',
               }}
             >
-              To create:
+              Wzór:
               <br />
               <Image src={`/challanges/${id}/image.png`} maxHeight={250} />
             </Box>
