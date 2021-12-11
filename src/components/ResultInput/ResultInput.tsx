@@ -17,7 +17,7 @@ const ResultInput: FC<ResultInputProps> = ({
   return (
     <div
       style={{
-        background: 'rgb(39, 40, 34)',
+        background: '#181c24',
         paddingLeft: '32px',
         marginTop: '-20px',
         marginBottom: '-20px',
@@ -32,7 +32,7 @@ const ResultInput: FC<ResultInputProps> = ({
           onChange?.(event);
         }}
         style={{
-          background: 'rgb(55, 56, 47)',
+          background: '#1d222c',
           borderRadius: '8px',
           padding: '0 8px',
         }}
