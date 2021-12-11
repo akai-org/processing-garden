@@ -2,12 +2,17 @@ import { Container } from '@chakra-ui/react';
 import Navbar from 'components/Navbar/Navbar';
 import { FC } from 'react';
 
-const Layout: FC = ({ children }) => {
+interface Props {
+  fullWidth: boolean;
+}
+
+const Layout: FC<Props> = ({ children, fullWidth }) => {
   return (
     <>
       <Navbar />
-      <Container maxW="container.md">{children}</Container>
-      {/* <Footer /> */}
+      <Container maxW={fullWidth ? 'full' : 'container.md'}>
+        {children}
+      </Container>
     </>
   );
 };

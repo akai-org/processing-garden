@@ -4,8 +4,6 @@ import path from 'path';
 import { ListCard } from 'components';
 
 const Challanges: FC = ({ files }: any) => {
-  console.log(files);
-
   return (
     <>
       {files?.map((dirName: string) => {

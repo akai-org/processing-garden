@@ -24,7 +24,7 @@ export default function App({ Component, pageProps, ...appProps }: AppProps) {
           {routesWithoutLayout.includes(currentRoute) ? (
             <Component {...pageProps} />
           ) : (
-            <Layout>
+            <Layout fullWidth={currentRoute === '/challanges/[id]'}>
               <Component {...pageProps} />
             </Layout>
           )}

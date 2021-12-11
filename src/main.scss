@@ -27,6 +27,18 @@ body {
   margin-left: -8px;
 }
 
+.sp-preview-container {
+  display: block !important;
+}
+
+.sp-stack {
+  width: unset !important;
+}
+
+.sp-preview-actions {
+  display: none !important;
+}
+
 #space-invaders-preview {
   .sp-preview-iframe {
     width: 100% !important;
