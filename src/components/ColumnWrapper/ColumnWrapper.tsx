@@ -11,7 +11,7 @@ interface Props {
 const ColumnWrapper: React.FC<Props> = ({ leftContent, rightContent }) => {
   return (
     <div className={styles.container}>
-      <Flex className={styles.preview}>
+      <Flex>
         {leftContent}
         {rightContent}
       </Flex>

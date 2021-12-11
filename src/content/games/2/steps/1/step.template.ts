@@ -120,7 +120,7 @@ const shipClass = `class Ship {
     }
 }`;
 
-const sceneClass = `class Scene {
+const sceneClass = (value: string) => `class Scene {
     constructor(player, enemy) {
         this.ship = new Ship(player);
         this.enemies = [];
@@ -236,6 +236,7 @@ function keyPressed() {
     //     if(!scene.ship) return;
     //     scene.ship.setDir(-1);
     // }
+    ${value}
 }
 
 function keyReleased() {
@@ -260,8 +261,7 @@ import * as p5 from 'p5';
 ${enemyClass}
 ${missileClass}
 ${shipClass}
-${sceneClass}
-${value}
+${sceneClass(value)}
 
 window.setup = setup
 window.draw = draw
