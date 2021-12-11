@@ -8,6 +8,7 @@ import { getSession } from 'next-auth/react';
 import { GetServerSideProps } from 'next';
 
 const Learning: FC = ({ files, progress }: any) => {
+  console.log(7654321, progress);
   return (
     <>
       {files?.map((dirName: string, i: number) => {
