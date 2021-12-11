@@ -5,6 +5,8 @@ import { SandpackWrapper } from 'components';
 import ColumnWrapper from 'components/ColumnWrapper/ColumnWrapper';
 import Leaderboard, { Record } from 'components/Leaderboard/Leaderboard';
 import withAuth from 'hoc/withAuth';
+import useAchievement from 'hooks/useAchievement';
+import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { FC, useState } from 'react';
 import theme from '../../editorTheme.json';
@@ -70,19 +72,28 @@ const Challange: FC = () => {
   const router = useRouter();
   const [code, setCode] = useState(renderTemplate);
   const [records, setRecords] = useState(recordsInitial);
+  const session = useSession();
+
+  const { setAchievement } = useAchievement();
 
   const handleSubmit = () => {
-    setTimeout(
-      () =>
-        setRecords((records) => [
-          {
-            user: { avatarUrl: 'some URL', displayName: 'Danny' },
-            duration: 143,
+    setTimeout(() => {
+      setRecords((records) => [
+        {
+          user: {
+            avatarUrl: 'some URL',
+            displayName: session.data?.user?.name!,
           },
-          ...records,
-        ]),
-      1000,
-    );
+          duration: 143,
+        },
+        ...records,
+      ]);
+
+      setAchievement({
+        description: 'Osiągnięto pierwsze miejsce w tabeli',
+        name: 'Zwycięzca',
+      });
+    }, 1000);
   };
 
   const { id } = router.query;
@@ -120,7 +131,7 @@ const Challange: FC = () => {
                 flexDirection: 'column',
               }}
             >
-              To create:
+              Wzór:
               <br />
               <Image src={`/challanges/${id}/image.png`} maxHeight={250} />
             </Box>
