@@ -24,24 +24,20 @@ const TutorialContainer: FC<TutorialContainerProps> = ({
   handleSubmit,
   handleNextButton,
 }) => {
-  const [modal, setModal] = useState(true);
+  const [modal, setModal] = useState(false);
   const [isWon, setIsWon] = useState<boolean>(false);
 
   useEffect(() => {
-    const listener = window.addEventListener(
-      'message',
-      (event) => {
-        if (event.origin !== 'https://0-9-13-sandpack.codesandbox.io') return;
-        if (event.data.type === 'gameResults') {
-          setModal(true);
-          setIsWon(event.data.state === 'won');
-        }
-      },
-      false,
-    );
+    const handleMessage = (event: MessageEvent<any>) => {
+      if (event.origin !== 'https://0-9-13-sandpack.codesandbox.io') return;
+      if (event.data.type === 'gameResults') {
+        setModal(true);
+        setIsWon(event.data.state === 'won');
+      }
+    };
+    window.addEventListener('message', handleMessage, false);
     return () => {
-      window.removeEventListener('message', listener);
-      console.log('event removed');
+      window.removeEventListener('message', handleMessage);
     };
   }, []);
 
