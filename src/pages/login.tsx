@@ -62,7 +62,7 @@ export default function Login({ providers }: LoginProps) {
                   letterSpacing={{ base: 'normal', md: 'tight' }}
                   color={useColorModeValue('gray.900', 'gray.100')}
                 >
-                  Join{' '}
+                  Dołącz do{' '}
                   <Text
                     display={{ base: 'block', lg: 'inline' }}
                     w="full"
@@ -77,7 +77,7 @@ export default function Login({ providers }: LoginProps) {
                   variant="outline"
                   onClick={() => signIn(provider.id, { callbackUrl: '/' })}
                 >
-                  Sign in with {provider.name}
+                  Dołącz przez {provider.name}
                 </Button>
               </Box>
             );

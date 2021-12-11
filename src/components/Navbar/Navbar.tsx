@@ -92,7 +92,7 @@ export default function Navbar() {
                   rightIcon={<ChevronRightIcon />}
                   size="sm"
                 >
-                  Login
+                  Zaloguj
                 </Button>
               </Link>
             )}
@@ -109,10 +109,10 @@ export default function Navbar() {
                   </MenuButton>
                   <MenuList>
                     <Link href="/profile">
-                      <MenuItem>Profile</MenuItem>
+                      <MenuItem>Profil</MenuItem>
                     </Link>
                     <MenuItem onClick={() => signOut({ callbackUrl: '/' })}>
-                      Logout
+                      Wyloguj
                     </MenuItem>
                   </MenuList>
                 </Menu>

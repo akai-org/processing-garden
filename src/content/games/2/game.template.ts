@@ -242,6 +242,8 @@ function keyPressed() {
         if(!scene.ship) return;
         scene.ship.setDir(-1);
     }
+
+    return false;
 }
 
 function keyReleased() {
