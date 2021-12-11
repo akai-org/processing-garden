@@ -25,8 +25,9 @@ const TutorialContainer: FC<TutorialContainerProps> = ({
     window.addEventListener(
       'message',
       (event) => {
-        if (event.origin === 'https://0-9-13-sandpack.codesandbox.io') {
-            console.log(event.data)
+        if (event.origin !== 'https://0-9-13-sandpack.codesandbox.io') return;
+        if (event.data.type === 'gameResults') {
+            console.log(event.data.state)
         }
       },
       false,

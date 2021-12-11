@@ -6,8 +6,9 @@ const enemyClass = `class Enemy {
         this.y = y;
         this.r = 30;
 
-        this.horizontalSpeed = 1;
+        this.horizontalSpeed = 0;
         this.toDelete = false;
+        this.verticalSpeed = 1;
     }
 
     didHit(ship) {
@@ -29,11 +30,12 @@ const enemyClass = `class Enemy {
 
     shiftDown() {
         this.horizontalSpeed *= -1;
-        this.y += this.r;
+        this.y += this.verticalSpeed;
     }
 
     move() {
         this.x += 5*this.horizontalSpeed;
+        this.shiftDown();
     }
 
     show() {
@@ -126,8 +128,8 @@ const sceneClass = `class Scene {
     }
 
     createEnemies() {
-        for (var i = 0; i < 6; i++) {
-            this.enemies[i] = new Enemy(i * 60 + 60, 60);
+        for (var i = 0; i < 1; i++) {
+            this.enemies[i] = new Enemy(width/2, 60);
         }
     }
 
@@ -138,8 +140,7 @@ const sceneClass = `class Scene {
         // handle ship
 
         if (this.ship && this.ship.toDelete) {
-            console.log('sending data to main app')
-            window.top.postMessage('Lambert Lambert ty chuju', '*')
+            window.top.postMessage({type: 'gameResults', state: 'lost'}, '*')
             this.ship = null;
         }
         if (this.ship) {
@@ -174,12 +175,6 @@ const sceneClass = `class Scene {
             enemy.show();
         }
 
-        if (this.edge) {
-            for (const enemy of this.enemies) {
-                enemy.shiftDown();
-            }
-            this.edge = false;
-        }
     }
 
     updateMissiles() {
