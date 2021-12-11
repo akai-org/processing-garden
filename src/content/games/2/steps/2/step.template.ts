@@ -128,6 +128,8 @@ const sceneClass = (value: string) => `class Scene {
 
         this.enemy = enemy;
 
+        this.stopped = false;
+
         this.createEnemies();
     }
 
@@ -165,8 +167,9 @@ const sceneClass = (value: string) => `class Scene {
 
     updateEnemies() {
         this.edge = false;
-        if(this.enemies.length === 0){
+        if(this.enemies.length === 0 && !this.stopped){
             window.top.postMessage({type: 'gameResults', state: 'won'}, '*')
+            this.stopped = true;
         }
         for (const [index, enemy] of this.enemies.entries()) {
             if (enemy.didHit(this.ship)) {
@@ -185,7 +188,7 @@ const sceneClass = (value: string) => `class Scene {
 
         if(this.edge){
             for(const enemy of this.enemies){
-                enemy.shiftDown()
+                enemy.shiftDown();
             }
         }
 
