@@ -20,6 +20,7 @@ const ListCard = ({ content, type }: any) => {
       href={`/learning/${content.index}`}
       key={content.index}
       textDecoration="none!important"
+      _focus={{ outline: 'none' }}
     >
       <Flex pt={10} alignItems="center" justifyContent="center">
         <Box
@@ -49,7 +50,8 @@ const ListCard = ({ content, type }: any) => {
 
             <Box mt={2}>
               <Text
-                display="inline"
+                display={{ base: 'block', lg: 'inline' }}
+                w="full"
                 bgClip="text"
                 bgGradient="linear(to-r, green.400,purple.500)"
                 fontWeight="extrabold"

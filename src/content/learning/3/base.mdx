@@ -5,7 +5,8 @@ import { ResultInput, SandpackWrapper } from '../../../components';
 import { Box } from '@chakra-ui/react';
 
 <Box mt={5} mb={5}>
-  Twój pierwszy rysunek w p5js.
+  Obsługa eventów (klik myszką, wciśnięcie klawisza). Kliknij myszką w
+  wyrenderowany obraz i sprawdź jak zmienia się kolor!
 </Box>
 
 ```js
@@ -18,6 +19,11 @@ function setup() {
 function draw() {
   background(0, 255, 0);
   ellipse(50, 50, 80, 80);
+  if (mouseIsPressed) {
+    fill(0);
+  } else {
+    fill(255);
+  }
 }
 
 window.setup = setup;
@@ -42,7 +48,9 @@ window.draw = draw;
 </SandpackWrapper>
 
 <Box mt={20} mb={5}>
-  Przećwicz to sam - stwórz ellipse z wartością (50, 50, 60, 60):
+  Obsługa eventów klawiszowych - większość naszych gier będzie się opierać na
+  klawiatrze. Wywołajmy akcje na wciśnięcie klawiszy. Dokończ podany kod dodając
+  akcje dla górnego klawisza.
 </Box>
 
 ```js
@@ -53,7 +61,18 @@ function setup() {
 }
 
 function draw() {
-    background(0, 255, 0);
+  background(0, 255, 0);
+  ellipse(50, 50, 80, 80);
+}
+
+function keyPressed() {
+  switch (keyCode) {
+    case LEFT_ARROW:
+      fill(0);
+      break;
+    case RIGHT_ARROW:
+      fill(100);
+      break;
 ```
 
 <ResultInput
@@ -64,8 +83,15 @@ function draw() {
 />
 
 ```js
+      fill(180);
+      break;
+    case DOWN_ARROW:
+      fill(250);
+      break;
+  }
 }
 
 window.setup = setup;
 window.draw = draw;
+window.keyPressed = keyPressed;
 ```

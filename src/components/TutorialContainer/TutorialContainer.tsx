@@ -10,6 +10,7 @@ interface TutorialContainerProps {
   codeTemplate: (value: string) => string;
   userValue: string;
   handleSubmit: () => void;
+  handleNextButton: () => void;
 }
 
 const TutorialContainer: FC<TutorialContainerProps> = ({
@@ -20,6 +21,7 @@ const TutorialContainer: FC<TutorialContainerProps> = ({
   codeTemplate,
   userValue,
   handleSubmit,
+  handleNextButton,
 }) => {
   return (
     <Box py={10}>
@@ -49,7 +51,7 @@ const TutorialContainer: FC<TutorialContainerProps> = ({
 
         {isFinished && (
           <Link href={`/learning/${+id + 1}`}>
-            <Button colorScheme="blue" ml={3}>
+            <Button colorScheme="blue" ml={3} onClick={handleNextButton}>
               Kolejny tutorial
             </Button>
           </Link>
