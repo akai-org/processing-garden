@@ -55,7 +55,7 @@ const SandboxListing = ({ sandboxes }: SandboxListingProps) => {
             title: sandbox.name,
             index: index + 1,
           }}
-          type="Plac zabaw"
+          type="Studio twórców"
         />
       ))}
     </>
