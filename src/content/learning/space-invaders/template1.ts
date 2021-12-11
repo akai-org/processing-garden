@@ -1,7 +1,7 @@
 export const challengeTitle = 'asdf';
 
 const enemyClass = `class Enemy {
-    constructor(x, y) {
+    constructor(x, y, enemy) {
         this.x = x;
         this.y = y;
         this.r = 30;
@@ -9,6 +9,7 @@ const enemyClass = `class Enemy {
         this.horizontalSpeed = 0;
         this.toDelete = false;
         this.verticalSpeed = 1;
+        this.enemy = enemy;
     }
 
     didHit(ship) {
@@ -31,7 +32,7 @@ const enemyClass = `class Enemy {
     shiftDown(ship) {
         this.horizontalSpeed *= -1;
         this.y += this.verticalSpeed;
-        if(this.y > height && ship){
+        if(this.y - this.r > height && ship){
             window.top.postMessage({type: 'gameResults', state: 'won'}, '*')
             this.toDelete = true
         }
@@ -43,9 +44,7 @@ const enemyClass = `class Enemy {
     }
 
     show() {
-        noStroke();
-        fill(255, 0, 200, 150);
-        ellipse(this.x, this.y, this.r * 2, this.r * 2);
+        image(this.enemy, this.x, this.y, this.r * 2, this.r * 2);
     }
 
     die() {
@@ -89,17 +88,18 @@ const missileClass = `class Missile {
 }`;
 
 const shipClass = `class Ship {
-    constructor() {
+    constructor(player) {
         this.x = width / 2;
         this.horizontalSpeed = 0;
 
         this.toDelete = false;
+
+        this.player = player;
     }
 
     show() {
-        fill(255);
-        rectMode(CENTER);
-        rect(this.x, height - 20, 20, 60);
+        imageMode(CENTER);
+        image(this.player, this.x, height - 20, 20, 60);
     }
 
     setDir(dir) {
@@ -121,19 +121,21 @@ const shipClass = `class Ship {
 }`;
 
 const sceneClass = `class Scene {
-    constructor() {
-        this.ship = new Ship();
+    constructor(player, enemy) {
+        this.ship = new Ship(player);
         this.enemies = [];
         this.missiles = [];
 
         this.edge = false;
+
+        this.enemy = enemy;
 
         this.createEnemies();
     }
 
     createEnemies() {
         for (var i = 0; i < 1; i++) {
-            this.enemies[i] = new Enemy(width/2, 60);
+            this.enemies[i] = new Enemy(width/2, 60, this.enemy);
         }
     }
 
@@ -203,10 +205,17 @@ const sceneClass = `class Scene {
 }
 
 let scene;
+let player;
+let enemy
 
 function setup() {
     createCanvas(600, 400);
-    scene = new Scene();
+
+    // loading images
+
+    
+
+    scene = new Scene(player, enemy);
     scene.updateMissiles 
 }
 
@@ -221,17 +230,27 @@ function keyPressed() {
     }
 
     if (keyCode === RIGHT_ARROW) {
+        if(!scene.ship) return;
         scene.ship.setDir(1);
     } else if (keyCode === LEFT_ARROW) {
+        if(!scene.ship) return;
         scene.ship.setDir(-1);
     }
 }
 
 function keyReleased() {
     if (key != ' ') {
+        if(!scene.ship) return;
         scene.ship.setDir(0);
     }
-}`;
+}
+
+function preload() {
+    const path = window.location.ancestorOrigins[0];
+    player = loadImage(path + '/assets/player.png')
+    enemy = loadImage(path + '/assets/enemy.png')
+}
+`;
 
 export const codeTemplate = () => `
 
@@ -246,4 +265,5 @@ window.setup = setup
 window.draw = draw
 window.keyReleased = keyReleased
 window.keyPressed = keyPressed
+window.preload = preload;
 `;
