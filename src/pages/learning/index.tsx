@@ -35,6 +35,7 @@ const Learning: FC = ({ files, progress }: any) => {
             dir="learning"
             content={{ title, description, index: dirName }}
             type="Tutorial"
+            href={`/learning/${dirName}`}
           />
         );
       })}

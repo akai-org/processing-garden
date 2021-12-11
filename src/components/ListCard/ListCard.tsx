@@ -8,7 +8,7 @@ import {
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 
-const ListCardContent = ({ content, type, isActive }: any) => {
+const ListCardContent = ({ content, type, isActive, href }: any) => {
   return (
     <Flex pt={10} alignItems="center" justifyContent="center">
       <Box
@@ -75,7 +75,11 @@ const ListCard = ({ content, type, isActive = true }: any) => {
           fontSize="sm"
           fontWeight="700"
           rounded="md"
-          href={`/learning/${content.index}`}
+          href={
+            type === 'Tutorial'
+              ? `/learning/${content.index}`
+              : `/challanges/${content.index}`
+          }
           key={content.index}
           textDecoration="none!important"
           _focus={{ outline: 'none' }}
