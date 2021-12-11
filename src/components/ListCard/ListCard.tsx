@@ -8,7 +8,7 @@ import {
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 
-const ListCardContent = ({ content, type, isActive }: any) => {
+const ListCardContent = ({ content, type, isActive, href }: any) => {
   return (
     <Flex pt={10} alignItems="center" justifyContent="center">
       <Box

@@ -16,6 +16,7 @@ const Challanges: FC = ({ files }: any) => {
             key={dirName}
             content={{ title, index: dirName }}
             type="Challange"
+            href={`/challanges/${dirName}`}
           />
         );
       })}
