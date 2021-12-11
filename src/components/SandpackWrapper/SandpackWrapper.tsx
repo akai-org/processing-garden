@@ -2,7 +2,7 @@ import { FC, useState } from 'react';
 import { Box, Button, Spinner } from '@chakra-ui/react';
 
 interface Props {
-  type: string;
+  type?: string;
   onClick?: () => void;
 }
 

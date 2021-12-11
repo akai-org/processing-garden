@@ -13,8 +13,6 @@ const ResultInput: FC<ResultInputProps> = ({
   onSuccess,
   template,
 }) => {
-  console.log({ onChange, correctValue, onSuccess });
-
   const [value, setValue] = useState('');
 
   useEffect(() => {
