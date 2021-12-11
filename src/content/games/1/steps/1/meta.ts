@@ -1,1 +1,1 @@
-export const title = 'Dodaj stery do statu';
+export const title = 'Ucieknij przed przeciwnikami';
