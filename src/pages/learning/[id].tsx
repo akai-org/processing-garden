@@ -1,4 +1,5 @@
 import TutorialContainer from 'components/TutorialContainer/TutorialContainer';
+import withAuth from 'hoc/withAuth';
 import { useRouter } from 'next/router';
 import { FC, useState } from 'react';
 
@@ -57,4 +58,4 @@ const Lesson: FC = () => {
   return null;
 };
 
-export default Lesson;
+export default withAuth(Lesson);
