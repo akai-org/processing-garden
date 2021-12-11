@@ -2,11 +2,7 @@ import { FC, useState } from 'react';
 import { Box, Button, Spinner } from '@chakra-ui/react';
 
 interface Props {
-<<<<<<< Updated upstream
   type?: string;
-=======
-  type: string;
->>>>>>> Stashed changes
   onClick?: () => void;
 }
 

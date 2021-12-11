@@ -1,9 +1,6 @@
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
-<<<<<<< Updated upstream
 import db from 'db';
-=======
->>>>>>> Stashed changes
 
 export default NextAuth({
   providers: [
@@ -15,7 +12,6 @@ export default NextAuth({
   pages: {
     signIn: '/login',
   },
-<<<<<<< Updated upstream
   callbacks: {
     async signIn({ account, profile }) {
       const user = await db.user.findFirst({
@@ -43,6 +39,4 @@ export default NextAuth({
       return true;
     },
   },
-=======
->>>>>>> Stashed changes
 });

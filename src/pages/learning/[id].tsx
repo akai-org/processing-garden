@@ -1,7 +1,6 @@
 import TutorialContainer from 'components/TutorialContainer/TutorialContainer';
 import { useRouter } from 'next/router';
 import { FC, useState } from 'react';
-<<<<<<< Updated upstream
 
 const handleStepFinished = async (id: string) => {
   fetch(`/api/progress/learning/${id}`, {
@@ -9,8 +8,6 @@ const handleStepFinished = async (id: string) => {
     credentials: 'include',
   }).then((res) => res.json());
 };
-=======
->>>>>>> Stashed changes
 
 const Lesson: FC = () => {
   const [isFinished, setFinished] = useState(false);
@@ -47,13 +44,10 @@ const Lesson: FC = () => {
         <Content.default
           onSuccess={() => {
             setFinished(true);
-<<<<<<< Updated upstream
 
             handleStepFinished(id as string)
               .then(console.log)
               .catch(console.error);
-=======
->>>>>>> Stashed changes
           }}
           isFinished={isFinished}
           handleChange={handleChange}

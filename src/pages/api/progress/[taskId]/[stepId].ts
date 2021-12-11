@@ -8,19 +8,11 @@ export default async function progress(
   res: NextApiResponse,
 ) {
   const session = await getSession({ req });
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
   const schema = z
     .object({
       query: z.object({
         taskId: z.string(),
-<<<<<<< Updated upstream
         stepId: z.string().transform((value) => Number(value)),
-=======
-        stepId: z.number(),
->>>>>>> Stashed changes
       }),
     })
     .safeParse(req);
@@ -36,7 +28,6 @@ export default async function progress(
   const { stepId, taskId } = schema.data.query;
 
   try {
-<<<<<<< Updated upstream
     const user = await db.user.findFirst({
       where: { email: session.user.email },
     });
@@ -60,17 +51,6 @@ export default async function progress(
     }
 
     res.status(201).json({ success: true });
-=======
-    await db.progress.create({
-      data: {
-        taskId,
-        stepId,
-        user: { connect: { email: session.user.email } },
-      },
-    });
-
-    res.status(200).json({ success: true });
->>>>>>> Stashed changes
   } catch (error) {
     res.status(500).json({ error, message: 'Failed to set progress' });
   }

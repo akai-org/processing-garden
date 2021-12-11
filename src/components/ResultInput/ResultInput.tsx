@@ -1,9 +1,5 @@
-<<<<<<< Updated upstream
 import React, { FC, useState, useEffect } from 'react';
 
-=======
-import React, { FC, useState } from 'react';
->>>>>>> Stashed changes
 interface ResultInputProps {
   onChange?: any;
   onSuccess?: () => void;
