@@ -19,10 +19,12 @@ const AchievementProvider: FC = ({ children }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        if (!data?.error) {
+          console.log(data);
 
-        setMeta(achievement);
-        setModalVisible(true);
+          setMeta(achievement);
+          setModalVisible(true);
+        }
       })
       .catch(console.error);
   };
