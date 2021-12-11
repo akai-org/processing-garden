@@ -30,15 +30,18 @@ model Progress {
 
 model Sandbox {
   id          String        @id @default(uuid())
+  name        String
   code        String
   SandboxUser SandboxUser[]
 }
 
 model SandboxUser {
-  sandbox   Sandbox @relation(fields: [sandboxId], references: [id])
+  sandbox   Sandbox  @relation(fields: [sandboxId], references: [id])
   sandboxId String
-  user      User    @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
   userId    Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@id([userId, sandboxId])
 }

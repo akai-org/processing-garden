@@ -33,19 +33,21 @@ export default async function progress(
       return res.status(401).json({ error: 'Unauthorized' });
     }
 
-    const a = await db.achievement.findFirst({
+    const exist = await db.achievement.findFirst({
       where: { name, userId: user?.id! },
     });
 
-    if (!a) {
-      await db.achievement.create({
-        data: {
-          name,
-          description,
-          userId: user?.id!,
-        },
-      });
+    if (exist) {
+      return res.status(400).json({ error: 'Invalid input' });
     }
+
+    await db.achievement.create({
+      data: {
+        name,
+        description,
+        userId: user?.id!,
+      },
+    });
 
     res.status(201).json({ success: true });
   } catch (error) {
