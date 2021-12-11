@@ -3,24 +3,34 @@ import { ListCard } from '../../components';
 import fs from 'fs';
 import path from 'path';
 import { Heading } from '@chakra-ui/react';
+import withAuth from 'hoc/withAuth';
+import db from 'db';
+import { getSession } from 'next-auth/react';
+import { GetServerSideProps } from 'next';
 
-const Learning: FC = ({ files }: any) => {
-  console.log(files);
-
+const Learning: FC = ({ files, progress }: any) => {
   return (
     <>
       <Heading size="lg" textAlign="center">
         Opanuj game development!
       </Heading>
-
-      {files?.map((dirName: string) => {
+      {files?.map((dirName: string, i: number) => {
         const {
           title,
           description,
         } = require(`content/learning/${dirName}/meta.ts`);
 
+        let isActive = progress.map((el: any) => el.stepId >= i);
+        if (isActive.length === 0) {
+          isActive = [false];
+        }
+        if (progress.length === 0 && i === 0) {
+          isActive = [true];
+        }
+        console.log(23, isActive);
         return (
           <ListCard
+            isActive={isActive[0]}
             key={dirName}
             dir="learning"
             content={{ title, description, index: dirName }}
@@ -32,14 +42,26 @@ const Learning: FC = ({ files }: any) => {
   );
 };
 
-export async function getServerSideProps() {
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const session = await getSession({ req });
+  const user = await db.user.findFirst({
+    where: { email: session?.user?.email! },
+  });
+  let progress;
+  if (user) {
+    progress = await db.progress.findMany({
+      where: { userId: { equals: user.id } },
+    });
+  }
+
   const files = fs.readdirSync(
     path.join(process.cwd(), 'src/content/learning'),
   );
-
+  console.log(2, user);
+  console.log(3, progress);
   return {
-    props: { files },
+    props: { files, progress },
   };
-}
+};
 
-export default Learning;
+export default withAuth(Learning);

@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 
 import styles from './ResultInput.module.css';
 
@@ -13,24 +13,14 @@ interface ResultInputProps {
 const ResultInput: FC<ResultInputProps> = ({
   onChange,
   correctValue,
-  onSuccess,
   template,
-  tabs = 0,
 }) => {
-  console.log({ onChange, correctValue, onSuccess });
-
   const [value, setValue] = useState('');
-
-  React.useEffect(() => {
-    if (correctValue()) {
-      onSuccess?.();
-    }
-  }, [value]);
 
   return (
     <div
       style={{
-        background: 'rgb(39, 40, 34)',
+        background: '#181c24',
         paddingLeft: '32px',
         marginTop: '-20px',
         marginBottom: '-20px',
@@ -42,10 +32,14 @@ const ResultInput: FC<ResultInputProps> = ({
         onChange={(event) => {
           const v = event.target.value;
           setValue(v);
-          onChange?.(template?.(v));
+          onChange?.(event);
         }}
-        className={styles['code-input']}
-        style={{ marginLeft: `${tabs * 20}px` }}
+        style={{
+          width: '90%',
+          background: '#1d222c',
+          borderRadius: '8px',
+          padding: '0 8px',
+        }}
       />
     </div>
   );

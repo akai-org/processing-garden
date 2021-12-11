@@ -8,13 +8,9 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { useSession, signIn } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 
 export default function Home() {
-  const session = useSession();
-
-  console.log({ session });
-
   return (
     <Box px={8} py={24} mx="auto">
       <Box w={{ base: 'full' }} mx="auto" textAlign={'center'}>

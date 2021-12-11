@@ -1,5 +1,6 @@
 import { Heading } from '@chakra-ui/react';
 import { SandpackWrapper } from 'components';
+import withAuth from 'hoc/withAuth';
 import { FC } from 'react';
 
 const Sandbox: FC = () => {
@@ -13,4 +14,4 @@ const Sandbox: FC = () => {
   );
 };
 
-export default Sandbox;
+export default withAuth(Sandbox);

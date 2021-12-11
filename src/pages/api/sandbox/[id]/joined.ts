@@ -28,9 +28,10 @@ export default async function joined(
 
   try {
     await db.sandboxUser.create({
+      // @ts-ignore
       data: {
         sandboxId: id,
-        userEmail: session.user.email,
+        user: { connect: { email: session.user.email } },
       },
     });
 

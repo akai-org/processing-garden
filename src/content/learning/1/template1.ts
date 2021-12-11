@@ -1,5 +1,3 @@
-export const challengeTitle = 'asdf';
-
 export const codeTemplate = () => `
 import * as p5 from 'p5';
 
@@ -11,6 +9,6 @@ function draw() {
   background(0, 255, 0);
 }
 
-window.setup = setup
-window.draw = draw
+window.setup = setup;
+window.draw = draw;
 `;

@@ -3,6 +3,7 @@ import { ListCard } from '../../components';
 import fs from 'fs';
 import path from 'path';
 import { Heading } from '@chakra-ui/react';
+import withAuth from 'hoc/withAuth';
 
 const Games: FC = ({ files }: any) => {
   console.log('game', files);
@@ -39,4 +40,4 @@ export async function getServerSideProps() {
   };
 }
 
-export default Games;
+export default withAuth(Games);

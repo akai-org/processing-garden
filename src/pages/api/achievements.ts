@@ -9,13 +9,10 @@ export default async function progress(
 ) {
   const session = await getSession({ req });
   const schema = z
-    .object({
-      query: z.object({
-        taskId: z.string(),
-        stepId: z.string().transform((value) => Number(value)),
-      }),
-    })
-    .safeParse(req);
+    .object({ name: z.string(), description: z.string() })
+    .safeParse(JSON.parse(req.body));
+
+  console.log({ session, schema });
 
   if (req.method !== 'POST' || !schema.success) {
     return res.status(400).json({ error: 'Invalid input' });
@@ -25,7 +22,7 @@ export default async function progress(
     return res.status(401).json({ error: 'Unauthorized' });
   }
 
-  const { stepId, taskId } = schema.data.query;
+  const { name, description } = schema.data;
 
   try {
     const user = await db.user.findFirst({
@@ -36,15 +33,15 @@ export default async function progress(
       return res.status(401).json({ error: 'Unauthorized' });
     }
 
-    const p = await db.progress.findFirst({
-      where: { taskId, stepId, userId: user?.id! },
+    const a = await db.achievement.findFirst({
+      where: { name, userId: user?.id! },
     });
 
-    if (!p) {
-      await db.progress.create({
+    if (!a) {
+      await db.achievement.create({
         data: {
-          taskId,
-          stepId,
+          name,
+          description,
           userId: user?.id!,
         },
       });
@@ -52,6 +49,6 @@ export default async function progress(
 
     res.status(201).json({ success: true });
   } catch (error) {
-    res.status(500).json({ error, message: 'Failed to set progress' });
+    res.status(500).json({ error, message: 'Failed to set achievement' });
   }
 }
