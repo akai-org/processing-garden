@@ -5,7 +5,6 @@ import { FC, useState } from 'react';
 import db from 'db';
 import { getSession } from 'next-auth/react';
 import { GetServerSideProps } from 'next';
-import progress from 'pages/api/achievements';
 
 const handleStepFinished = async (id: string) => {
   return fetch(`/api/progress/learning/${id}`, {
@@ -48,7 +47,7 @@ const Lesson: FC = ({ progress }: any) => {
       <TutorialContainer
         title={meta?.title}
         id={id}
-        isFinished={isFinished}
+        isFinished={wasAlreadyFinished ? true : isFinished}
         codeTemplate={meta.codeTemplate}
         userValue={value}
         handleSubmit={handleSubmit}
