@@ -17,7 +17,6 @@ export default function Home() {
   return (
     <>
       <Content handleChange={handleChange} onSuccess={onSuccess} />
-
       <SandpackProvider
         customSetup={{
           entry: '/index.js',
