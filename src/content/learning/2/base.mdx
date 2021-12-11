@@ -1,0 +1,90 @@
+import { ResultInput, SandpackWrapper } from '../../../components';
+import { Button, Box } from '@chakra-ui/react';
+import { SandpackPreview, SandpackProvider } from '@codesandbox/sandpack-react';
+import { codeTemplate as renderTemplate } from './template1';
+import { codeTemplate as renderTemplate2 } from './template2';
+
+<Box mt={5} mb={5}>
+  Twój pierwszy szkic w p5js.
+</Box>
+
+```js
+import * as p5 from 'p5';
+
+function setup() {
+  createCanvas(100, 100);
+}
+
+function draw() {
+  background(0, 255, 0);
+}
+
+window.setup = setup;
+window.draw = draw;
+```
+
+<SandpackWrapper>
+  <SandpackProvider
+    customSetup={{
+      entry: '/index.js',
+      dependencies: { p5: 'latest' },
+      files: {
+        '/index.js': {
+          code: renderTemplate(),
+          active: true,
+        },
+      },
+    }}
+  >
+    <SandpackPreview />
+  </SandpackProvider>
+</SandpackWrapper>
+
+<Box mt={20} mb={5}>
+  Przećwicz to sam:
+</Box>
+
+```js
+import * as p5 from 'p5';
+
+function setup() {
+  createCanvas(100, 100);
+}
+
+function draw() {
+```
+
+<ResultInput
+  onChange={() => console.log('2')}
+  onSuccess={() => console.log(3)}
+  correctValue={() => console.log(5)}
+  template={() => console.log(7)}
+/>
+
+```js
+}
+
+window.setup = setup;
+window.draw = draw;
+```
+
+<SandpackWrapper>
+  <SandpackProvider
+    customSetup={{
+      entry: '/index.js',
+      dependencies: { p5: 'latest' },
+      files: {
+        '/index.js': {
+          code: renderTemplate2('background(100,100,100);'),
+          active: true,
+        },
+      },
+    }}
+  >
+    <SandpackPreview />
+  </SandpackProvider>
+</SandpackWrapper>
+
+<Button mt={10} mb={10}>
+  Powrót do reszty lekcji
+</Button>

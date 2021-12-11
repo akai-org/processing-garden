@@ -4,13 +4,25 @@ body {
 
 .sp-wrapper {
   width: 50% !important;
-  height: 100vh !important;
 }
 
 .sp-preview-iframe {
   background-color: rgb(26, 32, 43);
 }
 
+.sp-preview-actions {
+  display: none;
+}
+
+.sp-cube-wrapper {
+  display: none !important;
+}
+
+.custom-sandpack-wrapper,
+.ch-code {
+  margin: 20px 0 !important;
+}
+
 .sp-stack {
-  height: 100vh !important;
+  margin-left: -8px;
 }

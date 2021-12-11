@@ -1,47 +1,22 @@
-const learnLesson = (params: any) => {
-  console.log(
-    'TU MAMY WSZYSTKIE ID I RZECZY DO POJEDYNCZEGO LEARN/CHALANGE',
-    params,
-  );
-  return <div>{params.title}</div>;
+import TutorialContainer from 'components/TutorialContainer/TutorialContainer';
+import { useRouter } from 'next/router';
+import { FC } from 'react';
+
+const Lesson: FC = () => {
+  const router = useRouter();
+
+  const { id } = router.query;
+
+  const Content = id ? require(`content/learning/${id}/base.mdx`) : null;
+  const meta = id ? require(`content/learning/${id}/meta.ts`) : null;
+
+  if (id)
+    return (
+      <TutorialContainer title={meta?.title}>
+        {<Content.default />}
+      </TutorialContainer>
+    );
+  return null;
 };
 
-const learnConetntList = [
-  {
-    id: 1,
-    title: 'Tworzenie tła',
-    description: `It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.`,
-  },
-  {
-    id: 2,
-    title: 'Reagowanie na przyciski',
-    description: `It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.`,
-  },
-];
-
-export async function getStaticPaths() {
-  const paths = [
-    {
-      params: {
-        id: '1',
-      },
-    },
-    {
-      params: {
-        id: '2',
-      },
-    },
-  ];
-  return {
-    paths,
-    fallback: false,
-  };
-}
-
-export async function getStaticProps({ params }: any) {
-  const id = +params.id;
-
-  return { props: learnConetntList.find((v) => v.id === id) };
-}
-
-export default learnLesson;
+export default Lesson;
