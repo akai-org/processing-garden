@@ -13,13 +13,11 @@ const ResultInput: FC<ResultInputProps> = ({
   onSuccess,
   template,
 }) => {
-  console.log({ onChange, correctValue, onSuccess });
-
   const [value, setValue] = useState('');
 
   React.useEffect(() => {
-    if (correctValue()) {
-      onSuccess?.();
+    if (correctValue === value) {
+      console.log('succes');
     }
   }, [value]);
 
@@ -38,7 +36,6 @@ const ResultInput: FC<ResultInputProps> = ({
         onChange={(event) => {
           const v = event.target.value;
           setValue(v);
-          onChange?.(template?.(v));
         }}
         style={{
           background: 'rgb(55, 56, 47)',

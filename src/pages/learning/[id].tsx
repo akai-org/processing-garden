@@ -13,7 +13,7 @@ const Lesson: FC = () => {
   if (id)
     return (
       <TutorialContainer title={meta?.title}>
-        {<Content.default />}
+        {<Content.default handleChange={() => console.log('hi')} />}
       </TutorialContainer>
     );
   return null;
