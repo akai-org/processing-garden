@@ -1,6 +1,6 @@
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import { ComponentType, FC, ReactNode, useEffect } from 'react';
+import { ComponentType, FC, useEffect } from 'react';
 
 const withAuth = <P extends object>(Component: ComponentType<P>) => {
   const toReturn: FC<{ props: any }> = (props: any) => {
@@ -8,7 +8,7 @@ const withAuth = <P extends object>(Component: ComponentType<P>) => {
     const session = useSession();
 
     useEffect(() => {
-      if (session?.status !== 'authenticated') {
+      if (session?.status === 'unauthenticated') {
         router.push('/');
       }
     });
