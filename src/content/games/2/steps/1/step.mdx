@@ -8,8 +8,16 @@ import {
 import Editor from '@monaco-editor/react';
 
 ```js
-  const ship = rectangle(0, 0, 20,)
-  function move() {
+function setup() {
+  const scene = new Scene();
+  scene.ship = new Ship()
+  /*leć w prawo*/
+  scene.ship.setDir(1)
+  /*leć w lewo*/
+  scene.ship.setDir(-1)
+}
+
+function keyPressed() {
 ```
 
 <div
@@ -36,9 +44,6 @@ import Editor from '@monaco-editor/react';
 </div>
 
 ```js
-  }
+}
 
-  window.setup = setup;
-  window.draw = draw;
-;
 ```
