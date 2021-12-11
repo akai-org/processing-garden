@@ -1,5 +1,6 @@
 import { Text } from '@chakra-ui/layout';
 import { chakra } from '@chakra-ui/system';
+import withAuth from 'hoc/withAuth';
 import { GetServerSideProps } from 'next';
 import { DefaultSession } from 'next-auth';
 import { getSession, useSession } from 'next-auth/react';
@@ -8,7 +9,7 @@ type ProfileProps = {
   user?: DefaultSession['user'];
 };
 
-export default function Profile({ user }: ProfileProps) {
+function Profile({ user }: ProfileProps) {
   const profileSession = useSession();
   console.log({ profileSession });
 
@@ -20,14 +21,18 @@ export default function Profile({ user }: ProfileProps) {
   );
 }
 
+export default withAuth(Profile);
+
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  console.log(req);
+
   const session = await getSession({ req });
 
   console.log({ sess: session });
 
   if (!session?.user) {
-    return { props: { user: undefined } };
+    return { props: { user: null } };
   }
 
-  return { props: { user: session.user } };
+  return { props: { user: session?.user } };
 };
