@@ -10,6 +10,19 @@ const enemyClass = `class Enemy {
         this.toDelete = false;
     }
 
+    didHit(ship) {
+        if (!ship) return;
+        const d = dist(this.x, this.y, ship.x, height - 40);
+        // 30 = half of the ship width
+        if (d < this.r + 30) {
+
+            ship.die();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     grow() {
         this.r += 2;
     }
@@ -20,7 +33,7 @@ const enemyClass = `class Enemy {
     }
 
     move() {
-        this.x += this.horizontalSpeed;
+        this.x += 5*this.horizontalSpeed;
     }
 
     show() {
@@ -73,6 +86,8 @@ const shipClass = `class Ship {
     constructor() {
         this.x = width / 2;
         this.horizontalSpeed = 0;
+
+        this.toDelete = false;
     }
 
     show() {
@@ -92,6 +107,10 @@ const shipClass = `class Ship {
         if (this.horizontalSpeed < 0 && this.x - 10 > 0) {
             this.x += this.horizontalSpeed * 5;
         }
+    }
+
+    die() {
+        this.toDelete = true;
     }
 }`;
 
@@ -118,8 +137,15 @@ const sceneClass = `class Scene {
 
         // handle ship
 
-        this.ship.move();
-        this.ship.show();
+        if (this.ship && this.ship.toDelete) {
+            console.log('sending data to main app')
+            window.top.postMessage('Lambert Lambert ty chuju', '*')
+            this.ship = null;
+        }
+        if (this.ship) {
+            this.ship.move();
+            this.ship.show();
+        }
 
         // handle enemies
 
@@ -134,6 +160,9 @@ const sceneClass = `class Scene {
 
     updateEnemies() {
         for (const [index, enemy] of this.enemies.entries()) {
+            if (enemy.didHit(this.ship)) {
+                this.ship.die();
+            }
             if (enemy.toDelete) {
                 this.enemies.splice(index, 1);
                 continue;
@@ -175,7 +204,6 @@ const sceneClass = `class Scene {
 }
 
 let scene;
-let img;
 
 function setup() {
     createCanvas(600, 400);
@@ -185,7 +213,6 @@ function setup() {
 
 function draw() {
     scene.update();
-    image(img, 0, 0, 200, 200);
 }
 
 function keyPressed() {
@@ -205,11 +232,6 @@ function keyReleased() {
     if (key != ' ') {
         scene.ship.setDir(0);
     }
-}
-
-function preload() {
-    const path = window.location;
-    img = loadImage(path.ancestorOrigins[0] + '/mrBean.jpg');
 }`;
 
 export const codeTemplate = () => `
@@ -225,5 +247,4 @@ window.setup = setup
 window.draw = draw
 window.keyReleased = keyReleased
 window.keyPressed = keyPressed
-window.preload = preload
 `;

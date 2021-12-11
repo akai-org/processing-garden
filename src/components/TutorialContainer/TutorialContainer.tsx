@@ -1,5 +1,5 @@
 import { Box, Button, Flex, Heading } from '@chakra-ui/react';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import Link from 'next/link';
 import SandpackWrapper from 'components/SandpackWrapper/SandpackWrapper';
 import { SandpackPreview, SandpackProvider } from '@codesandbox/sandpack-react';
@@ -21,6 +21,17 @@ const TutorialContainer: FC<TutorialContainerProps> = ({
   userValue,
   handleSubmit,
 }) => {
+  useEffect(() => {
+    window.addEventListener(
+      'message',
+      (event) => {
+        if (event.origin === 'https://0-9-13-sandpack.codesandbox.io') {
+            console.log(event.data)
+        }
+      },
+      false,
+    );
+  }, []);
   return (
     <Box py={10}>
       <Heading mb={10}>{title}</Heading>
