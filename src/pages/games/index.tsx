@@ -6,7 +6,7 @@ import { Heading } from '@chakra-ui/react';
 import withAuth from 'hoc/withAuth';
 
 const Games: FC = ({ files }: any) => {
-  console.log('game', files);
+  console.log('games', files);
 
   return (
     <>
@@ -22,6 +22,7 @@ const Games: FC = ({ files }: any) => {
         return (
           <ListCard
             key={dirName}
+            href={`games/${dirName}`}
             content={{ title, description, index: dirName }}
             type="Game"
             dir="games"

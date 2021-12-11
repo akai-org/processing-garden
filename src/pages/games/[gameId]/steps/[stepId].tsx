@@ -4,9 +4,10 @@ import { FC } from 'react';
 const Step: FC = () => {
   const nextRouter = useRouter();
 
-  const { id } = nextRouter.query;
-  console.log(id);
-  return null;
+  const { stepId } = nextRouter.query;
+  console.log(stepId);
+
+  return <>Step {stepId}</>;
 };
 
 export default Step;

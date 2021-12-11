@@ -8,25 +8,26 @@ import fs from 'fs';
 import path from 'path';
 import { Button, Heading } from '@chakra-ui/react';
 import Link from 'next/link';
+import { GetServerSideProps } from 'next';
 
 const Game: FC = ({ files }: any) => {
   const nextRouter = useRouter();
   const [code, setCode] = React.useState('');
 
-  const { id } = nextRouter.query;
-  console.log(id);
+  const { gameId } = nextRouter.query;
+
   React.useEffect(() => {
-    if (!files.includes(id)) {
+    if (!files.includes(gameId)) {
       router.push('/games');
     }
   });
 
-  if (files.includes(id)) {
-    const Task = id ? require(`content/games/${id}/game.mdx`) : null;
-    const template = id
-      ? require(`content/games/${id}/game.template.ts`)
+  if (files.includes(gameId)) {
+    const Task = gameId ? require(`content/games/${gameId}/game.mdx`) : null;
+    const template = gameId
+      ? require(`content/games/${gameId}/game.template.ts`)
       : null;
-    const meta = id ? require(`content/games/${id}/meta.ts`) : null;
+    const meta = gameId ? require(`content/games/${gameId}/meta.ts`) : null;
 
     return (
       <>
@@ -49,7 +50,7 @@ const Game: FC = ({ files }: any) => {
           </SandpackProvider>
         </SandpackWrapper>
 
-        <Link passHref={true} href={`/games/${id}/step/1`}>
+        <Link passHref={true} href={`/games/${gameId}/steps`}>
           <Button colorScheme="pink">Start</Button>
         </Link>
       </>
@@ -59,12 +60,12 @@ const Game: FC = ({ files }: any) => {
   }
 };
 
-export async function getServerSideProps() {
-  const files = fs.readdirSync(path.join(process.cwd(), 'src/content/games'));
+export const getServerSideProps: GetServerSideProps = async () => {
+  const files = fs.readdirSync(path.join(process.cwd(), 'src/content/games/'));
 
   return {
     props: { files },
   };
-}
+};
 
 export default Game;
