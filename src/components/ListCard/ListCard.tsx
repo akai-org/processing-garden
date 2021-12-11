@@ -47,24 +47,16 @@ const ListCard = ({ content, type }: any) => {
             </Flex>
 
             <Box mt={2}>
-              <Link
-                fontSize="2xl"
-                color={useColorModeValue('gray.700', 'white')}
-                fontWeight="700"
-                _hover={{
-                  color: useColorModeValue('gray.600', 'gray.200'),
-                }}
-              >
                 <Text
                   display={{ base: 'block', lg: 'inline' }}
                   w="full"
                   bgClip="text"
                   bgGradient="linear(to-r, green.400,purple.500)"
                   fontWeight="extrabold"
+                  fontSize="2xl"
                 >
                   {content.title}
                 </Text>
-              </Link>
               <chakra.p
                 mt={2}
                 color={useColorModeValue('gray.600', 'gray.300')}

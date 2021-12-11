@@ -1,5 +1,3 @@
-export const challengeTitle = 'asdf';
-
 export const codeTemplate = () => `
 import * as p5 from 'p5';
 

@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 
 interface ResultInputProps {
   onChange?: any;
@@ -15,9 +15,9 @@ const ResultInput: FC<ResultInputProps> = ({
 }) => {
   const [value, setValue] = useState('');
 
-  React.useEffect(() => {
-    if (correctValue === value) {
-      console.log('succes');
+  useEffect(() => {
+    if (correctValue(value)) {
+      onSuccess?.();
     }
   }, [value]);
 
@@ -36,6 +36,7 @@ const ResultInput: FC<ResultInputProps> = ({
         onChange={(event) => {
           const v = event.target.value;
           setValue(v);
+          onChange?.(event);
         }}
         style={{
           background: 'rgb(55, 56, 47)',
