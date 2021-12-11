@@ -22,8 +22,9 @@ const ListCard = ({ content, type }: any) => {
       textDecoration="none!important"
       _focus={{ outline: 'none' }}
     >
-      <Flex pt={10} w="full" alignItems="center" justifyContent="center">
+      <Flex pt={10} alignItems="center" justifyContent="center">
         <Box
+          width="100%"
           rounded="lg"
           shadow="lg"
           bg={useColorModeValue('white', '#202736')}
@@ -31,8 +32,8 @@ const ListCard = ({ content, type }: any) => {
           display="flex"
           alignItems="center"
         >
-          <Box mx="auto" px={8} py={4} mb={30}>
-            <Flex justifyContent="flex-end">
+          <Box width="100%" mx="auto" px={8} py={4} mb={30}>
+            <Flex>
               <Text
                 px={3}
                 py={1}

@@ -3,6 +3,7 @@ import { SandpackPreview, SandpackProvider } from '@codesandbox/sandpack-react';
 import { SandpackWrapper } from 'components';
 
 import Task from '../../content/games/game.mdx';
+import withAuth from 'hoc/withAuth';
 
 const Games: FC = () => {
   const [code, setCode] = useState('');
@@ -31,4 +32,4 @@ const Games: FC = () => {
   );
 };
 
-export default Games;
+export default withAuth(Games);

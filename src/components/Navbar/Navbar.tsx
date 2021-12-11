@@ -31,8 +31,6 @@ export default function Navbar() {
 
   const session = useSession();
 
-  console.log({ session });
-
   return (
     <Box shadow="md">
       <chakra.header
@@ -120,27 +118,32 @@ export default function Navbar() {
         borderWidth={0}
         overflowX="auto"
       >
-        <Container maxW="container.md">
-          <Tabs borderBottomColor="transparent" defaultIndex={defaultIndex}>
-            <TabList>
-              <Link href="/learning">
-                <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
-                  Lekcje
-                </Tab>
-              </Link>
-              <Link href="/games">
-                <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
-                  Gry
-                </Tab>
-              </Link>
-              <Link href="/sandbox">
-                <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
-                  Sandbox
-                </Tab>
-              </Link>
-            </TabList>
-          </Tabs>
-        </Container>
+        {session.status === 'authenticated' && (
+          <Container maxW="full">
+            <Tabs
+              borderBottomColor="transparent"
+              defaultIndex={defaultIndex || 9999}
+            >
+              <TabList>
+                <Link href="/learning">
+                  <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
+                    Lekcje
+                  </Tab>
+                </Link>
+                <Link href="/games">
+                  <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
+                    Gry
+                  </Tab>
+                </Link>
+                <Link href="/sandbox">
+                  <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
+                    Sandbox
+                  </Tab>
+                </Link>
+              </TabList>
+            </Tabs>
+          </Container>
+        )}
       </Flex>
     </Box>
   );
