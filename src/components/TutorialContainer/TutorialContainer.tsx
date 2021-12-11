@@ -3,7 +3,7 @@ import { FC, useEffect, useState } from 'react';
 import Link from 'next/link';
 import SandpackWrapper from 'components/SandpackWrapper/SandpackWrapper';
 import { SandpackPreview, SandpackProvider } from '@codesandbox/sandpack-react';
-import GameModal from 'components/Modal/Modal';
+import GameModal from 'components/GameModal/GameModal';
 interface TutorialContainerProps {
   title: string;
   id: string | string[];
@@ -22,27 +22,45 @@ const TutorialContainer: FC<TutorialContainerProps> = ({
   userValue,
   handleSubmit,
 }) => {
-  const [modal, setModal] = useState(false);
+  const [modal, setModal] = useState(true);
+  const [isWon, setIsWon] = useState<boolean>(false);
 
   useEffect(() => {
-    window.addEventListener(
+    const listener = window.addEventListener(
       'message',
       (event) => {
         if (event.origin !== 'https://0-9-13-sandpack.codesandbox.io') return;
         if (event.data.type === 'gameResults') {
-          console.log(event.data.state);
           setModal(true);
+          setIsWon(event.data.state === 'won');
         }
       },
       false,
     );
+    return () => {
+      window.removeEventListener('message', listener);
+      console.log('event removed');
+    };
   }, []);
+
+  const modalTitle = isWon
+    ? 'Gratulacje, wygrałeś!'
+    : 'Niestety, nie udało ci się :(';
+
+  const modalMessage = isWon
+    ? `Świetnie ci poszło! Możesz teraz przejść do kolejnego zadania
+    lub spróbować swoich sił jeszcze raz`
+    : `Musisz jeszcze popracować nad swoim kodem. Kliknij 
+    'Spróbuj ponownie', by jeszcze raz zmierzyć się z zadaniem`;
+
   return (
     <Box py={10}>
       <GameModal
+        title={modalTitle}
         isOpen={modal}
-        onClose={() => console.log('something')}
-        message="Ależ wieje"
+        onClose={() => setModal(false)}
+        message={modalMessage}
+        isWon={isWon}
       />
       <Heading mb={10}>{title}</Heading>
       {children}

@@ -14,22 +14,28 @@ interface Props {
   isOpen: boolean;
   message: string;
   onClose: () => void;
+  title: string;
+  isWon: boolean;
 }
 
-const GameModal: FC<Props> = ({ isOpen, message, onClose }) => {
+const GameModal: FC<Props> = ({ isOpen, message, onClose, title, isWon }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Modal Title</ModalHeader>
+        <ModalHeader>{title}</ModalHeader>
         <ModalCloseButton />
-        <ModalBody></ModalBody>
+        <ModalBody>{message}</ModalBody>
 
         <ModalFooter>
           <Button colorScheme="blue" mr={3} onClick={onClose}>
-            Close
+            Spróbuj ponownie
           </Button>
-          <Button variant="ghost">Secondary Action</Button>
+          {isWon ? (
+            <Button colorScheme="green" mr={3} onClick={onClose}>
+              Przejdź dalej
+            </Button>
+          ) : null}
         </ModalFooter>
       </ModalContent>
     </Modal>
