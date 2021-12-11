@@ -1,10 +1,13 @@
 import { FC, useState, useEffect } from 'react';
 
+import styles from './ResultInput.module.css';
+
 interface ResultInputProps {
   onChange?: any;
   onSuccess?: () => void;
   correctValue?: any;
   template?: (value?: any) => string;
+  tabs: number;
 }
 
 const ResultInput: FC<ResultInputProps> = ({
@@ -23,8 +26,8 @@ const ResultInput: FC<ResultInputProps> = ({
         marginBottom: '-20px',
       }}
     >
-      <input
-        type="text"
+      <textarea
+        // type="text"
         value={value}
         onChange={(event) => {
           const v = event.target.value;
@@ -32,6 +35,7 @@ const ResultInput: FC<ResultInputProps> = ({
           onChange?.(event);
         }}
         style={{
+          width: '90%',
           background: '#1d222c',
           borderRadius: '8px',
           padding: '0 8px',

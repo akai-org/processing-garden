@@ -120,7 +120,7 @@ const shipClass = `class Ship {
     }
 }`;
 
-const sceneClass = `class Scene {
+const sceneClass = (value: string) => `class Scene {
     constructor(player, enemy) {
         this.ship = new Ship(player);
         this.enemies = [];
@@ -213,10 +213,10 @@ function setup() {
 
     // loading images
 
-    
+
 
     scene = new Scene(player, enemy);
-    scene.updateMissiles 
+    scene.updateMissiles
 }
 
 function draw() {
@@ -236,6 +236,7 @@ function keyPressed() {
     //     if(!scene.ship) return;
     //     scene.ship.setDir(-1);
     // }
+    ${value}
 }
 
 function keyReleased() {
@@ -252,14 +253,15 @@ function preload() {
 }
 `;
 
-export const codeTemplate = () => `
+export const codeTemplate = (value: string) => `
 
 import * as p5 from 'p5';
+
 
 ${enemyClass}
 ${missileClass}
 ${shipClass}
-${sceneClass}
+${sceneClass(value)}
 
 window.setup = setup
 window.draw = draw

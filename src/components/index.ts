@@ -4,6 +4,7 @@ import ResultInput from './ResultInput/ResultInput';
 import SandpackWrapper from './SandpackWrapper/SandpackWrapper';
 import ListCard from './ListCard/ListCard';
 import ResultSelection from './ResultSelection/ResultSelection';
+import ColumnWrapper from './ColumnWrapper/ColumnWrapper';
 import UserCard from './UserCard/UserCard';
 
 export {
@@ -13,5 +14,6 @@ export {
   SandpackWrapper,
   ListCard,
   ResultSelection,
+  ColumnWrapper,
   UserCard,
 };

@@ -1,14 +1,15 @@
+import { Heading } from '@chakra-ui/react';
 import { useState } from 'react';
 import withAuth from 'hoc/withAuth';
 import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/react';
 import db from 'db';
 import { Button } from '@chakra-ui/button';
-import { ListCard } from 'components';
 import { Flex, Text } from '@chakra-ui/layout';
 import { useRouter } from 'next/router';
 import { Input } from '@chakra-ui/input';
 import { Sandbox } from '.prisma/client';
+import { ListCard } from 'components';
 
 type SandboxListingProps = {
   sandboxes: {

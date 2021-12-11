@@ -1,0 +1,49 @@
+import { SandpackPreview, SandpackProvider } from '@codesandbox/sandpack-react';
+import { codeTemplate as renderTemplate } from './step.template';
+import {
+  ResultInput,
+  SandpackWrapper,
+  ColumnWrapper,
+} from '../../../../../components';
+import Editor from '@monaco-editor/react';
+
+```js
+function setup() {
+  const scene = new Scene();
+  scene.ship = new Ship()
+  /*leć w prawo*/
+  scene.ship.setDir(1)
+  /*leć w lewo*/
+  scene.ship.setDir(-1)
+}
+
+function keyPressed() {
+```
+
+<div
+  style={{
+    background: 'rgb(39, 40, 34)',
+    marginTop: '-20px',
+    marginBottom: '-20px',
+  }}
+>
+  <Editor
+    options={{
+      minimap: {
+        enabled: false,
+      },
+      fontSize: 16,
+      wordWrap: 'on',
+    }}
+    width="100%"
+    height="400px"
+    language="javascript"
+    theme="vs-dark"
+    onChange={props.onChange}
+  />
+</div>
+
+```js
+}
+
+```

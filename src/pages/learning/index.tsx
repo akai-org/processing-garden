@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { ListCard } from '../../components';
 import fs from 'fs';
 import path from 'path';
+import { Heading } from '@chakra-ui/react';
 import withAuth from 'hoc/withAuth';
 import db from 'db';
 import { getSession } from 'next-auth/react';
@@ -10,6 +11,9 @@ import { GetServerSideProps } from 'next';
 const Learning: FC = ({ files, progress }: any) => {
   return (
     <>
+      <Heading size="lg" textAlign="center">
+        Opanuj game development!
+      </Heading>
       {files?.map((dirName: string, i: number) => {
         const {
           title,
@@ -34,6 +38,7 @@ const Learning: FC = ({ files, progress }: any) => {
             isActive={isActive.includes(true)}
             wasFinished={!!wasAlreadyFinished}
             key={dirName}
+            dir="learning"
             content={{ title, description, index: dirName }}
             type="Tutorial"
             href={`/learning/${dirName}`}

@@ -1,0 +1,27 @@
+import { SandpackPreview, SandpackProvider } from '@codesandbox/sandpack-react';
+import { codeTemplate as renderTemplate } from './game.template';
+import { ResultInput, SandpackWrapper } from '../../../components';
+
+<div id="space-invaders-preview">
+  <SandpackWrapper>
+    <SandpackProvider
+      customSetup={{
+        entry: '/index.js',
+        dependencies: { p5: 'latest' },
+        files: {
+          '/index.js': {
+            code: renderTemplate(),
+            active: true,
+          },
+        },
+      }}
+    >
+      <SandpackPreview style={{ width: '100%', height: '600px' }} />
+    </SandpackProvider>
+  </SandpackWrapper>
+</div>
+
+### Czas stworzyć coś niesamowitego!
+
+W tym tutorialu wspólnymi siłami stworzymy grę typu space-invaders! Od czego zaczniemy?
+Od zobaczenia efektu końcowego - nic tak nie wpływa na motywację!
