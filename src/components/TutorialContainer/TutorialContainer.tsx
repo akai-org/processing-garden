@@ -1,9 +1,17 @@
-import { Box } from '@chakra-ui/react';
-import { Layout } from 'components';
-import React, { FC } from 'react';
+import { Box, Heading } from '@chakra-ui/react';
+import { FC } from 'react';
 
-const TutorialContainer: FC = ({ children }) => {
-  return <Box py={2}>{children}</Box>;
+interface TutorialContainerProps {
+  title: string;
+}
+
+const TutorialContainer: FC<TutorialContainerProps> = ({ children, title }) => {
+  return (
+    <Box py={10}>
+      <Heading mb={10}>{title}</Heading>
+      {children}
+    </Box>
+  );
 };
 
 export default TutorialContainer;
