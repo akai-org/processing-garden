@@ -8,7 +8,6 @@ export default async function progress(
   res: NextApiResponse,
 ) {
   const session = await getSession({ req });
-
   const schema = z
     .object({
       query: z.object({

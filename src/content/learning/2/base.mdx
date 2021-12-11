@@ -3,6 +3,9 @@ import { Button, Box } from '@chakra-ui/react';
 import { SandpackPreview, SandpackProvider } from '@codesandbox/sandpack-react';
 import { codeTemplate as renderTemplate } from './template1';
 import { codeTemplate as renderTemplate2 } from './template2';
+import { codeTemplate as renderTemplate3 } from './template3';
+import { codeTemplate as renderTemplate4 } from './template4';
+import { codeTemplate as renderTemplate5 } from './template5';
 
 <Box mt={5} mb={5}>
   Twój pierwszy szkic w p5js.
@@ -54,12 +57,7 @@ function setup() {
 function draw() {
 ```
 
-<ResultInput
-  onChange={() => console.log('2')}
-  onSuccess={() => console.log(3)}
-  correctValue={() => console.log(5)}
-  template={() => console.log(7)}
-/>
+<ResultInput onSuccess={() => console.log(3)} correctValue="la" />
 
 ```js
 }
@@ -88,3 +86,149 @@ window.draw = draw;
 <Button mt={10} mb={10}>
   Powrót do reszty lekcji
 </Button>
+
+<Box mt={5} mb={5}>
+  Twój pierwszy rysunek w p5js.
+</Box>
+
+```js
+import * as p5 from 'p5';
+
+function setup() {
+  createCanvas(100, 100);
+}
+
+function draw() {
+  background(0, 255, 0);
+  ellipse(50, 50, 80, 80);
+}
+
+window.setup = setup;
+window.draw = draw;
+```
+
+<SandpackWrapper>
+  <SandpackProvider
+    customSetup={{
+      entry: '/index.js',
+      dependencies: { p5: 'latest' },
+      files: {
+        '/index.js': {
+          code: renderTemplate3(),
+          active: true,
+        },
+      },
+    }}
+  >
+    <SandpackPreview />
+  </SandpackProvider>
+</SandpackWrapper>
+
+<Box mt={5} mb={5}>
+  Obsługa eventów (klik myszką, wciśnięcie klawisza). Kliknij myszką w
+  wyrenderowany obraz i sprawdź jak zmienia się kolor!
+</Box>
+
+```js
+import * as p5 from 'p5';
+
+function setup() {
+  createCanvas(100, 100);
+}
+
+function draw() {
+  background(0, 255, 0);
+  ellipse(50, 50, 80, 80);
+  if (mouseIsPressed) {
+    fill(0);
+  } else {
+    fill(255);
+  }
+}
+
+window.setup = setup;
+window.draw = draw;
+```
+
+<SandpackWrapper>
+  <SandpackProvider
+    customSetup={{
+      entry: '/index.js',
+      dependencies: { p5: 'latest' },
+      files: {
+        '/index.js': {
+          code: renderTemplate4(),
+          active: true,
+        },
+      },
+    }}
+  >
+    <SandpackPreview />
+  </SandpackProvider>
+</SandpackWrapper>
+
+<Button mt={10} mb={10}>
+  Powrót do reszty lekcji
+</Button>
+
+<Box mt={5} mb={5}>
+  Obsługa eventów klawiszowych - większość naszych gier będzie się opierać na
+  klawiatrze. Wywołajmy akcje na wciśnięcie klawiszy.
+</Box>
+
+```js
+import * as p5 from 'p5';
+
+function setup() {
+  createCanvas(100, 100);
+}
+
+function draw() {
+  background(0, 255, 0);
+  ellipse(50, 50, 80, 80);
+}
+
+function keyPressed() {
+  switch (keyCode) {
+    case LEFT_ARROW:
+      fill(0);
+      break;
+    case RIGHT_ARROW:
+      fill(100);
+      break;
+    case UP_ARROW:
+      fill(180);
+      break;
+    case DOWN_ARROW:
+      fill(250);
+      break;
+  }
+}
+
+window.setup = setup;
+window.draw = draw;
+window.keyPressed = keyPressed;
+```
+
+<SandpackWrapper>
+  <SandpackProvider
+    customSetup={{
+      entry: '/index.js',
+      dependencies: { p5: 'latest' },
+      files: {
+        '/index.js': {
+          code: renderTemplate5(),
+          active: true,
+        },
+      },
+    }}
+  >
+    <SandpackPreview />
+  </SandpackProvider>
+</SandpackWrapper>
+
+<Box mt={5} mb={5}>
+  Twoja kolej ! Wypełnij koło fill(255, 204, 0) - żółty na wciśnięcie klawisza
+  enter
+</Box>
+https://p5js.org/reference/#/p5/keyCode
