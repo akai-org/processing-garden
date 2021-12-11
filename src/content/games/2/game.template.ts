@@ -6,9 +6,9 @@ const enemyClass = `class Enemy {
         this.y = y;
         this.r = 30;
 
-        this.horizontalSpeed = 0;
+        this.horizontalSpeed = 1;
         this.toDelete = false;
-        this.verticalSpeed = 1;
+        this.verticalSpeed = 3;
         this.enemy = enemy;
     }
 
@@ -40,7 +40,6 @@ const enemyClass = `class Enemy {
 
     move(ship) {
         this.x += 5*this.horizontalSpeed;
-        this.shiftDown(ship);
     }
 
     show() {
@@ -134,8 +133,8 @@ const sceneClass = `class Scene {
     }
 
     createEnemies() {
-        for (var i = 0; i < 5; i++) {
-            this.enemies[i] = new Enemy(50+(i*60), 60, this.enemy);
+        for (var i = 0; i < 6; i++) {
+            this.enemies[i] = new Enemy(i*90 + 40, 60, this.enemy);
         }
     }
 
@@ -166,6 +165,7 @@ const sceneClass = `class Scene {
     }
 
     updateEnemies() {
+        this.edge = false;
         for (const [index, enemy] of this.enemies.entries()) {
             if (enemy.didHit(this.ship)) {
                 this.ship.die();
@@ -179,6 +179,12 @@ const sceneClass = `class Scene {
                 this.edge = true;
             }
             enemy.show();
+        }
+
+        if(this.edge){
+            for(const enemy of this.enemies){
+                enemy.shiftDown();
+            }
         }
 
     }
