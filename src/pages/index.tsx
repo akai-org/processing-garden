@@ -51,9 +51,7 @@ export default function Home() {
           fontSize={{ base: 'lg', md: 'xl' }}
           color={useColorModeValue('gray.600', 'gray.300')}
         >
-          Hellonext is a feature voting software where you can allow your users
-          to vote on features, publish roadmap, and complete your customer
-          feedback loop.
+          Ucz, graj, baw się razem z innymi, zdobywaj punkty i osiągnięcia oraz
         </chakra.p>
         <Stack
           direction={{ base: 'column', sm: 'row' }}
@@ -74,7 +72,7 @@ export default function Home() {
             cursor="pointer"
             onClick={() => signIn()}
           >
-            Get Started
+            Rozpocznij
             <Icon boxSize={4} ml={1} viewBox="0 0 20 20" fill="currentColor">
               <path
                 fillRule="evenodd"

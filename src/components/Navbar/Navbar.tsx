@@ -98,7 +98,7 @@ export default function Navbar() {
             )}
             {session.status === 'authenticated' && (
               <>
-                <Text>Hello, {session.data.user?.name}!</Text>
+                <Text>Witaj, {session.data.user?.name}!</Text>
                 <Menu>
                   <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
                     <Avatar
