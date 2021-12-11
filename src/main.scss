@@ -38,3 +38,12 @@ body {
 .sp-preview-actions {
   display: none !important;
 }
+
+#space-invaders-preview {
+  .sp-preview-iframe {
+    width: 100% !important;
+  }
+  .sp-preview-container {
+    width: 100% !important;
+  }
+}
