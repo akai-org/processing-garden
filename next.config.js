@@ -1,5 +1,5 @@
 const { remarkCodeHike } = require('@code-hike/mdx');
-const theme = require('shiki/themes/monokai.json');
+const theme = require('shiki/themes/dark-plus.json');
 
 module.exports = {
   eslint: {
@@ -10,7 +10,6 @@ module.exports = {
     config.module.rules.push({
       test: /\.mdx?$/,
       use: [
-        // The default `babel-loader` used by Next:
         options.defaultLoaders.babel,
         {
           loader: '@mdx-js/loader',
@@ -22,5 +21,14 @@ module.exports = {
       ],
     });
     return config;
+  },
+  async redirects() {
+    return [
+      {
+        source: '/games/:id/step',
+        destination: '/games/:id',
+        permanent: true,
+      },
+    ];
   },
 };

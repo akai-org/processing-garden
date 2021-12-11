@@ -2,12 +2,17 @@ import { FC } from 'react';
 import { ListCard } from '../../components';
 import fs from 'fs';
 import path from 'path';
+import { Heading } from '@chakra-ui/react';
 
 const Learning: FC = ({ files }: any) => {
   console.log(files);
 
   return (
     <>
+      <Heading size="lg" textAlign="center">
+        Opanuj game development!
+      </Heading>
+
       {files?.map((dirName: string) => {
         const {
           title,
@@ -17,6 +22,7 @@ const Learning: FC = ({ files }: any) => {
         return (
           <ListCard
             key={dirName}
+            dir="learning"
             content={{ title, description, index: dirName }}
             type="Tutorial"
           />

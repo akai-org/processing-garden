@@ -6,7 +6,9 @@ const Layout: FC = ({ children }) => {
   return (
     <>
       <Navbar />
-      <Container maxW="container.md">{children}</Container>
+      <Container pt={10} maxW="container.md">
+        {children}
+      </Container>
       {/* <Footer /> */}
     </>
   );

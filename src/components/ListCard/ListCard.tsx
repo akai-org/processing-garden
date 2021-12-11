@@ -8,7 +8,7 @@ import {
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 
-const ListCard = ({ content, type }: any) => {
+const ListCard = ({ content, type, dir }: any) => {
   return (
     <Link
       px={3}
@@ -17,7 +17,7 @@ const ListCard = ({ content, type }: any) => {
       fontSize="sm"
       fontWeight="700"
       rounded="md"
-      href={`/learning/${content.index}`}
+      href={`/${dir}/${content.index}`}
       key={content.index}
       textDecoration="none!important"
     >

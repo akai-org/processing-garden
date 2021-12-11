@@ -1,36 +1,42 @@
-import { SandpackPreview, SandpackProvider } from '@codesandbox/sandpack-react';
-import Editor from '@monaco-editor/react';
-import { SandpackWrapper } from 'components';
-import React, { FC } from 'react';
+import { FC } from 'react';
+import { ListCard } from '../../components';
+import fs from 'fs';
+import path from 'path';
+import { Heading } from '@chakra-ui/react';
 
-import Task from '../../content/games/game.mdx';
-
-const Games: FC = () => {
-  const [code, setCode] = React.useState('');
+const Games: FC = ({ files }: any) => {
+  console.log('game', files);
 
   return (
     <>
-      <h1>Games</h1>
-      <Task />
+      <Heading size="lg" textAlign="center">
+        Zbuduj i zagraj!
+      </Heading>
+      {files?.map((dirName: string) => {
+        const {
+          title,
+          description,
+        } = require(`content/games/${dirName}/meta.ts`);
 
-      <SandpackWrapper>
-        <SandpackProvider
-          customSetup={{
-            entry: '/index.js',
-            dependencies: { p5: 'latest' },
-            files: {
-              '/index.js': {
-                code: code,
-                active: true,
-              },
-            },
-          }}
-        >
-          <SandpackPreview />
-        </SandpackProvider>
-      </SandpackWrapper>
+        return (
+          <ListCard
+            key={dirName}
+            content={{ title, description, index: dirName }}
+            type="Game"
+            dir="games"
+          />
+        );
+      })}
     </>
   );
 };
+
+export async function getServerSideProps() {
+  const files = fs.readdirSync(path.join(process.cwd(), 'src/content/games'));
+
+  return {
+    props: { files },
+  };
+}
 
 export default Games;
