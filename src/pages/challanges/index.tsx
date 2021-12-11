@@ -4,8 +4,6 @@ import path from 'path';
 import { ListCard } from 'components';
 
 const Challanges: FC = ({ files }: any) => {
-  console.log(files);
-
   return (
     <>
       {files?.map((dirName: string) => {
@@ -15,7 +13,7 @@ const Challanges: FC = ({ files }: any) => {
           <ListCard
             key={dirName}
             content={{ title, index: dirName }}
-            type="Challange"
+            type="Wyzwanie"
             href={`/challanges/${dirName}`}
           />
         );

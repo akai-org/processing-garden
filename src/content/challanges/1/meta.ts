@@ -1,1 +1,1 @@
-export const title = 'First one';
+export const title = 'Square';

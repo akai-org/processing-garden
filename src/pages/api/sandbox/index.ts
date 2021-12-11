@@ -11,11 +11,10 @@ export default async function create(
   const session = await getSession({ req });
   const schema = z
     .object({
-      body: z.object({
-        template: z.string().optional(),
-      }),
+      name: z.string(),
+      template: z.string().optional(),
     })
-    .safeParse(req);
+    .safeParse(JSON.parse(req.body));
 
   if (req.method !== 'POST' || !schema.success) {
     return res.status(400).json({ error: 'Invalid input' });
@@ -25,28 +24,39 @@ export default async function create(
     return res.status(401).json({ error: 'Unauthorized' });
   }
 
-  const { template } = schema.data.body;
+  const { name, template } = schema.data;
 
-  console.log({ template });
+  console.log({ name, template });
 
   try {
     const sandbox = await db.sandbox.create({
       data: {
         id: v4(),
         code: '',
+        name,
       },
     });
 
-    await db.sandboxUser.create({
-      // @ts-ignore
-      data: {
-        sandboxId: sandbox.id,
-        user: { connect: { email: session?.user?.email } },
-      },
+    console.log({ sandbox });
+
+    const user = await db.user.findFirst({
+      where: { email: { equals: session.user.email } },
     });
 
-    return res.status(201).json(sandbox);
+    console.log({ user });
+
+    if (user) {
+      const sbUser = await db.sandboxUser.create({
+        data: {
+          sandboxId: sandbox.id,
+          userId: user?.id!,
+        },
+      });
+      console.log({ sbUser });
+      return res.status(201).json(sandbox);
+    }
   } catch (error) {
-    return res.status(500).json({ message: 'TODO' });
+    console.error({ error });
+    return res.status(500).json({ message: 'Failed to create a sandbox' });
   }
 }

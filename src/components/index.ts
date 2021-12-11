@@ -5,6 +5,7 @@ import SandpackWrapper from './SandpackWrapper/SandpackWrapper';
 import ListCard from './ListCard/ListCard';
 import ResultSelection from './ResultSelection/ResultSelection';
 import ColumnWrapper from './ColumnWrapper/ColumnWrapper';
+import UserCard from './UserCard/UserCard';
 
 export {
   Layout,
@@ -14,4 +15,5 @@ export {
   ListCard,
   ResultSelection,
   ColumnWrapper,
+  UserCard,
 };
