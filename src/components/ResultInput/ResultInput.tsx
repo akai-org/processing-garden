@@ -1,5 +1,4 @@
 import React, { FC, useState } from 'react';
-
 interface ResultInputProps {
   onChange?: any;
   onSuccess?: () => void;
@@ -38,7 +37,7 @@ const ResultInput: FC<ResultInputProps> = ({
         onChange={(event) => {
           const v = event.target.value;
           setValue(v);
-          onChange?.(template?.(v));
+          onChange?.(event);
         }}
         style={{
           background: 'rgb(55, 56, 47)',
