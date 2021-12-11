@@ -17,16 +17,22 @@ const Learning: FC = ({ files, progress }: any) => {
         } = require(`content/learning/${dirName}/meta.ts`);
 
         let isActive = progress.map((el: any) => el.stepId >= i);
+
         if (isActive.length === 0) {
           isActive = [false];
         }
         if (progress.length === 0 && i === 0) {
           isActive = [true];
         }
-        console.log(23, isActive);
+
+        const wasAlreadyFinished = progress.find(
+          (el: any) => el.stepId == i + 1,
+        );
+
         return (
           <ListCard
-            isActive={isActive[0]}
+            isActive={isActive.includes(true)}
+            wasFinished={!!wasAlreadyFinished}
             key={dirName}
             content={{ title, description, index: dirName }}
             type="Tutorial"

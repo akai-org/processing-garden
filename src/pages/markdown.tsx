@@ -6,8 +6,6 @@ import '@code-hike/mdx/dist/index.css';
 export default function Home() {
   const [code, setCode] = useState('');
 
-  console.log(Content);
-
   const handleChange = (value: any) => {
     setCode(value);
   };

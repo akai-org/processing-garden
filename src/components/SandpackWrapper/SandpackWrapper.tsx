@@ -10,8 +10,6 @@ const SandpackWrapper: FC<Props> = ({ children, type, onClick }) => {
   const [isVisible, setVisible] = useState(false);
   const [isLoading, setLoading] = useState(false);
 
-  console.log(onClick);
-
   return (
     <div className={'custom-sandpack-wrapper'}>
       <Box my={4}>
