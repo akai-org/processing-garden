@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   chakra,
+  Container,
   Flex,
   HStack,
   IconButton,
@@ -86,26 +87,27 @@ export default function Navbar() {
         borderWidth={0}
         overflowX="auto"
       >
-        <Tabs borderBottomColor="transparent" defaultIndex={defaultIndex}>
-          <TabList>
-            <Link href="/learning">
-              <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
-                Learning
-              </Tab>
-            </Link>
-            <Link href="/challanges">
-              <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
-                Challanges
-              </Tab>
-            </Link>
-            <Link href="/sandbox">
-              <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
-                Sandbox
-              </Tab>
-            </Link>
-          </TabList>
-        </Tabs>
-        <Spacer />
+        <Container maxW="container.md">
+          <Tabs borderBottomColor="transparent" defaultIndex={defaultIndex}>
+            <TabList>
+              <Link href="/learning">
+                <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
+                  Learning
+                </Tab>
+              </Link>
+              <Link href="/games">
+                <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
+                  Games
+                </Tab>
+              </Link>
+              <Link href="/sandbox">
+                <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
+                  Sandbox
+                </Tab>
+              </Link>
+            </TabList>
+          </Tabs>
+        </Container>
       </Flex>
     </Box>
   );

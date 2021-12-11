@@ -7,7 +7,7 @@ const SandpackWrapper: FC = ({ children }) => {
 
   return (
     <div className={'custom-sandpack-wrapper'}>
-      <Box py={4}>
+      <Box my={4}>
         <Button
           onClick={() => {
             setLoading(true);
@@ -15,7 +15,6 @@ const SandpackWrapper: FC = ({ children }) => {
             setTimeout(() => setVisible(true));
             setTimeout(() => setLoading(false), 1000);
           }}
-          colorScheme="blue"
         >
           Uruchom
         </Button>
