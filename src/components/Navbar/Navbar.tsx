@@ -125,12 +125,12 @@ export default function Navbar() {
             <TabList>
               <Link href="/learning">
                 <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
-                  Learning
+                  Lekcje
                 </Tab>
               </Link>
               <Link href="/games">
                 <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
-                  Games
+                  Gry
                 </Tab>
               </Link>
               <Link href="/sandbox">
