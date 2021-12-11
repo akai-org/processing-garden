@@ -175,16 +175,17 @@ const sceneClass = `class Scene {
 }
 
 let scene;
+let img;
 
 function setup() {
     createCanvas(600, 400);
-
     scene = new Scene();
     scene.updateMissiles 
 }
 
 function draw() {
     scene.update();
+    image(img, 0, 0, 200, 200);
 }
 
 function keyPressed() {
@@ -204,6 +205,11 @@ function keyReleased() {
     if (key != ' ') {
         scene.ship.setDir(0);
     }
+}
+
+function preload() {
+    const path = window.location;
+    img = loadImage(path.ancestorOrigins[0] + '/mrBean.jpg');
 }`;
 
 export const codeTemplate = () => `
@@ -219,4 +225,5 @@ window.setup = setup
 window.draw = draw
 window.keyReleased = keyReleased
 window.keyPressed = keyPressed
+window.preload = preload
 `;

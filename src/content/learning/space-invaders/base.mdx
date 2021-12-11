@@ -19,22 +19,24 @@ It works by default with many languages
 
 For example you can pront some shape and color him green, rectangle:
 
-<SandpackWrapper>
-  <SandpackProvider
-    customSetup={{
-      entry: '/index.js',
-      dependencies: { p5: 'latest' },
-      files: {
-        '/index.js': {
-          code: renderTemplate(),
-          active: true,
+<div id="space-invaders-preview">
+  <SandpackWrapper>
+    <SandpackProvider
+      customSetup={{
+        entry: '/index.js',
+        dependencies: { p5: 'latest' },
+        files: {
+          '/index.js': {
+            code: renderTemplate(),
+            active: true,
+          }
         },
-      },
-    }}
-  >
-    <SandpackPreview />
-  </SandpackProvider>
-</SandpackWrapper>
+      }}
+    >
+      <SandpackPreview />
+    </SandpackProvider>
+  </SandpackWrapper>
+</div>
 
 ```js
 function setup() {
