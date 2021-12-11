@@ -6,6 +6,7 @@ import { codeTemplate as renderTemplate2 } from './template2';
 import { codeTemplate as renderTemplate3 } from './template3';
 import { codeTemplate as renderTemplate4 } from './template4';
 import { codeTemplate as renderTemplate5 } from './template5';
+import { correctValue } from './test.ts'
 
 <Box mt={5} mb={5}>
   Twój pierwszy szkic w p5js.
@@ -57,7 +58,7 @@ function setup() {
 function draw() {
 ```
 
-<ResultInput onSuccess={() => console.log(3)} correctValue="la" />
+<ResultInput onSuccess={() => console.log(3)} correctValue={correctValue} />
 
 ```js
 }
