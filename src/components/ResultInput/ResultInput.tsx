@@ -28,8 +28,8 @@ const ResultInput: FC<ResultInputProps> = ({
       style={{
         background: 'rgb(39, 40, 34)',
         paddingLeft: '32px',
-        marginTop: '-5px',
-        marginBottom: '-5px',
+        marginTop: '-20px',
+        marginBottom: '-20px',
       }}
     >
       <input
