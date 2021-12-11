@@ -9,10 +9,20 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { signIn } from 'next-auth/react';
+import NextImage from 'next/image';
 
 export default function Home() {
   return (
-    <Box px={8} py={24} mx="auto">
+    <Box px={8} py={24} mx="auto" width="fit-content">
+      <Box
+        mb={10}
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
+        <NextImage src="/logo.png" width={200} height={200} />
+      </Box>
       <Box w={{ base: 'full' }} mx="auto" textAlign={'center'}>
         <chakra.h1
           mb={6}
@@ -30,7 +40,7 @@ export default function Home() {
             bgGradient="linear(to-r, green.400,purple.500)"
             fontWeight="extrabold"
           >
-            Processing Garden*
+            Processing Garden
           </Text>
           <br />
           to connect all
@@ -41,9 +51,7 @@ export default function Home() {
           fontSize={{ base: 'lg', md: 'xl' }}
           color={useColorModeValue('gray.600', 'gray.300')}
         >
-          Hellonext is a feature voting software where you can allow your users
-          to vote on features, publish roadmap, and complete your customer
-          feedback loop.
+          Ucz, graj, baw się razem z innymi, zdobywaj punkty i osiągnięcia oraz
         </chakra.p>
         <Stack
           direction={{ base: 'column', sm: 'row' }}
@@ -64,7 +72,7 @@ export default function Home() {
             cursor="pointer"
             onClick={() => signIn()}
           >
-            Get Started
+            Rozpocznij
             <Icon boxSize={4} ml={1} viewBox="0 0 20 20" fill="currentColor">
               <path
                 fillRule="evenodd"
