@@ -21,15 +21,13 @@ const Lesson: FC = () => {
   const meta = id ? require(`content/learning/${id}/meta.ts`) : null;
 
   const handleSubmit = () => {
-    if (isFinished) {
-      console.log('call do backendu');
-    }
-    handleStepFinished(id as string)
-      .then(console.log)
-      .catch(console.error);
-
     if (meta.correctValue(value)) {
       setFinished(true);
+
+      console.log('call do backendu');
+      handleStepFinished(id as string)
+        .then(console.log)
+        .catch(console.error);
     }
   };
 
