@@ -4,5 +4,14 @@ import ResultInput from './ResultInput/ResultInput';
 import SandpackWrapper from './SandpackWrapper/SandpackWrapper';
 import ListCard from './ListCard/ListCard';
 import ResultSelection from './ResultSelection/ResultSelection';
+import ColumnWrapper from './ColumnWrapper/ColumnWrapper';
 
-export { Layout, Navbar, ResultInput, SandpackWrapper, ListCard, ResultSelection };
+export {
+  Layout,
+  Navbar,
+  ResultInput,
+  SandpackWrapper,
+  ListCard,
+  ResultSelection,
+  ColumnWrapper,
+};

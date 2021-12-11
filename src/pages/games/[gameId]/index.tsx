@@ -8,7 +8,7 @@ import styles from './index.module.scss';
 
 import fs from 'fs';
 import path from 'path';
-import { Button, Heading } from '@chakra-ui/react';
+import { Box, Button, Heading } from '@chakra-ui/react';
 import Link from 'next/link';
 import { GetServerSideProps } from 'next';
 
@@ -30,14 +30,14 @@ const Game: FC = ({ files }: any) => {
       ? require(`content/games/${gameId}/game.template.ts`)
       : null;
     const meta = gameId ? require(`content/games/${gameId}/meta.ts`) : null;
-
+    // onChange={(value: string) => setCode(value)}
     return (
       <>
         <Heading mb={10}>{meta.title}</Heading>
 
-        <div className={styles['md-styles']}>
-          <Task.default onChange={(value: string) => setCode(value)} />
-        </div>
+        <Task.default style={{ height: '800px', width: '100%' }} />
+
+        <div className={styles['md-styles']}></div>
         <Link passHref={true} href={`/games/${gameId}/steps`}>
           <Button mt={10} colorScheme="pink">
             Zbuduj {meta.title}

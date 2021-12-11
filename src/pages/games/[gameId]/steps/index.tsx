@@ -2,26 +2,38 @@ import { FC } from 'react';
 
 import fs from 'fs';
 import path from 'path';
-import router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { GetServerSideProps } from 'next';
-import Link from 'next/link';
+import { ListCard } from 'components';
 
 const Steps: FC = ({ files }: any) => {
   const nextRouter = useRouter();
 
   const { gameId } = nextRouter.query;
-  console.log(gameId);
+
+  const metaFiles: { fileName: string; title: string }[] = files.map(
+    (fileName: string) => ({
+      fileName,
+      title: require(`content/games/${gameId}/steps/${fileName}/meta.ts`).title,
+    }),
+  );
+
+  const gameTitle = require(`content/games/${gameId}/meta.ts`).title;
 
   return (
     <>
-      Steps
-      <ul>
-        {files.map((name: string) => (
-          <Link key={name} href={`/games/${gameId}/steps/${name}`}>
-            <li>{name}</li>
-          </Link>
-        ))}
-      </ul>
+      {metaFiles.map(({ fileName, title }) => {
+        return (
+          <ListCard
+            isActive={true}
+            key={fileName}
+            dir="games"
+            content={{ title }}
+            type={gameTitle}
+            href={`/games/${gameId}/steps/${fileName}`}
+          />
+        );
+      })}
     </>
   );
 };

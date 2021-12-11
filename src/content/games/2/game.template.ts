@@ -134,8 +134,8 @@ const sceneClass = `class Scene {
     }
 
     createEnemies() {
-        for (var i = 0; i < 1; i++) {
-            this.enemies[i] = new Enemy(width/2, 60, this.enemy);
+        for (var i = 0; i < 5; i++) {
+            this.enemies[i] = new Enemy(50+(i*60), 60, this.enemy);
         }
     }
 
@@ -224,18 +224,18 @@ function draw() {
 }
 
 function keyPressed() {
-    // if (key === ' ') {
-    //     const missile = new Missile(scene.ship.x, height);
-    //     scene.missiles.push(missile);
-    // }
+    if (key === ' ') {
+        const missile = new Missile(scene.ship.x, height);
+        scene.missiles.push(missile);
+    }
 
-    // if (keyCode === RIGHT_ARROW) {
-    //     if(!scene.ship) return;
-    //     scene.ship.setDir(1);
-    // } else if (keyCode === LEFT_ARROW) {
-    //     if(!scene.ship) return;
-    //     scene.ship.setDir(-1);
-    // }
+    if (keyCode === RIGHT_ARROW) {
+        if(!scene.ship) return;
+        scene.ship.setDir(1);
+    } else if (keyCode === LEFT_ARROW) {
+        if(!scene.ship) return;
+        scene.ship.setDir(-1);
+    }
 }
 
 function keyReleased() {
