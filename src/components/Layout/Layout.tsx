@@ -10,7 +10,7 @@ const Layout: FC<Props> = ({ children, fullWidth }) => {
   return (
     <>
       <Navbar />
-      <Container maxW={fullWidth ? 'full' : 'container.md'}>
+      <Container pt={10} maxW={fullWidth ? 'full' : 'container.md'}>
         {children}
       </Container>
     </>
