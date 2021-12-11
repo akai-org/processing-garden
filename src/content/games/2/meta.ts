@@ -1,4 +1,4 @@
-export const title = 'Space shooter';
+export const title = 'Space Invaders';
 
 export const description =
-  'Zawsze marzyłeś o podrózach w kosmos? Zostan inzynierem statku kosmicznego! Zbuduj statek kosmiczy, dzięki któremu podbijesz wszechświat!';
+  'Świetna nauka gry! Pif, paf, strzały, latanie, statki. Musisz się tego nauczyć!';

@@ -4,6 +4,8 @@ import { SandpackWrapper } from 'components';
 import router, { useRouter } from 'next/router';
 import React, { FC } from 'react';
 
+import styles from './index.module.scss';
+
 import fs from 'fs';
 import path from 'path';
 import { Button, Heading } from '@chakra-ui/react';
@@ -31,8 +33,18 @@ const Game: FC = ({ files }: any) => {
 
     return (
       <>
-        <Heading>{meta.title}</Heading>
-        <Task.default onChange={(value: string) => setCode(value)} />
+        <Heading mb={10}>{meta.title}</Heading>
+
+        <div className={styles['md-styles']}>
+          <Task.default onChange={(value: string) => setCode(value)} />
+        </div>
+        <Link passHref={true} href={`/games/${gameId}/steps`}>
+          <Button mt={10} colorScheme="pink">
+            Zbuduj {meta.title}
+          </Button>
+        </Link>
+
+        {/*
         <SandpackWrapper>
           <SandpackProvider
             customSetup={{
@@ -48,11 +60,7 @@ const Game: FC = ({ files }: any) => {
           >
             <SandpackPreview />
           </SandpackProvider>
-        </SandpackWrapper>
-
-        <Link passHref={true} href={`/games/${gameId}/steps`}>
-          <Button colorScheme="pink">Start</Button>
-        </Link>
+        </SandpackWrapper> */}
       </>
     );
   } else {
