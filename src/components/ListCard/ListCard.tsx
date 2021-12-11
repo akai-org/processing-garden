@@ -64,7 +64,7 @@ const ListCardContent = ({ content, type, isActive, href }: any) => {
   );
 };
 
-const ListCard = ({ content, type, isActive = true }: any) => {
+const ListCard = ({ content, type, isActive = true, href }: any) => {
   return (
     <>
       {isActive ? (
@@ -75,11 +75,7 @@ const ListCard = ({ content, type, isActive = true }: any) => {
           fontSize="sm"
           fontWeight="700"
           rounded="md"
-          href={
-            type === 'Tutorial'
-              ? `/learning/${content.index}`
-              : `/challanges/${content.index}`
-          }
+          href={href}
           key={content.index}
           textDecoration="none!important"
           _focus={{ outline: 'none' }}
