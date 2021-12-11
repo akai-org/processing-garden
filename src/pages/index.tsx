@@ -8,8 +8,13 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
+import { useSession, signIn } from 'next-auth/react';
 
 export default function Home() {
+  const session = useSession();
+
+  console.log({ session });
+
   return (
     <Box px={8} py={24} mx="auto">
       <Box
@@ -65,6 +70,7 @@ export default function Home() {
             mb={{ base: 2, sm: 0 }}
             size="lg"
             cursor="pointer"
+            onClick={() => signIn()}
           >
             Get Started
             <Icon boxSize={4} ml={1} viewBox="0 0 20 20" fill="currentColor">

@@ -8,24 +8,22 @@ datasource db {
 }
 
 model User {
-  id          String @id
-  displayName String
-  avatarUrl   String
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
+  email       String        @id
+  name        String
+  image       String
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
   Progress    Progress[]
   SandboxUser SandboxUser[]
 }
 
 model Progress {
-  id     String @id @default(uuid())
-  taskId String // learning, games - snake, tic-tac-toe
-  stepId Int
-  points Int    @default(1)
-  user   User   @relation(fields: [userId], references: [id])
-  userId String
+  id        String @id @default(uuid())
+  taskId    String // learning, games - snake, tic-tac-toe
+  stepId    Int
+  points    Int    @default(1)
+  user      User   @relation(fields: [userEmail], references: [email])
+  userEmail String
 }
 
 model Sandbox {
@@ -37,8 +35,8 @@ model Sandbox {
 model SandboxUser {
   sandbox   Sandbox @relation(fields: [sandboxId], references: [id])
   sandboxId String
-  user      User    @relation(fields: [userId], references: [id])
-  userId    String
+  user      User    @relation(fields: [userEmail], references: [email])
+  userEmail String
 
-  @@id([userId, sandboxId])
+  @@id([userEmail, sandboxId])
 }
