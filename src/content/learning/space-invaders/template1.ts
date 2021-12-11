@@ -224,18 +224,18 @@ function draw() {
 }
 
 function keyPressed() {
-    if (key === ' ') {
-        const missile = new Missile(scene.ship.x, height);
-        scene.missiles.push(missile);
-    }
+    // if (key === ' ') {
+    //     const missile = new Missile(scene.ship.x, height);
+    //     scene.missiles.push(missile);
+    // }
 
-    if (keyCode === RIGHT_ARROW) {
-        if(!scene.ship) return;
-        scene.ship.setDir(1);
-    } else if (keyCode === LEFT_ARROW) {
-        if(!scene.ship) return;
-        scene.ship.setDir(-1);
-    }
+    // if (keyCode === RIGHT_ARROW) {
+    //     if(!scene.ship) return;
+    //     scene.ship.setDir(1);
+    // } else if (keyCode === LEFT_ARROW) {
+    //     if(!scene.ship) return;
+    //     scene.ship.setDir(-1);
+    // }
 }
 
 function keyReleased() {
