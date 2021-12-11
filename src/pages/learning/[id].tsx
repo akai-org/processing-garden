@@ -14,14 +14,13 @@ const handleStepFinished = async (id: string) => {
   }).then((res) => res.json());
 };
 
-const Lesson: FC = ({ progress2 }: any) => {
+const Lesson: FC = ({ progress }: any) => {
   const [isFinished, setFinished] = useState(false);
   const [value, setValue] = useState('');
   const router = useRouter();
 
   const { id } = router.query;
-  const wasAlreadyFinished = progress2.find((el: any) => el.stepId == id);
-  console.log('WERT', progress2);
+  const wasAlreadyFinished = progress.find((el: any) => el.stepId == id);
 
   const Content = id ? require(`content/learning/${id}/base.mdx`) : null;
   const meta = id ? require(`content/learning/${id}/meta.ts`) : null;
@@ -66,15 +65,15 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const user = await db.user.findFirst({
     where: { email: session?.user?.email! },
   });
-  let progress2;
+  let progress;
   if (user) {
-    progress2 = await db.progress.findMany({
+    progress = await db.progress.findMany({
       where: { userId: { equals: user.id } },
     });
   }
 
   return {
-    props: { progress2 },
+    props: { progress },
   };
 };
 
