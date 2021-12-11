@@ -1,23 +1,26 @@
-import { SandpackPreview, SandpackProvider } from '@codesandbox/sandpack-react';
-import { codeTemplate, correctValue } from './test';
-import { codeTemplate as renderTemplate } from './template1';
 import { ResultInput, SandpackWrapper } from '../../../components';
+import { Button, Box } from '@chakra-ui/react';
+import { SandpackPreview, SandpackProvider } from '@codesandbox/sandpack-react';
+import { codeTemplate as renderTemplate } from './template1';
 
-# Code and Focus
+<Box mt={5} mb={5}>
+  Twój pierwszy szkic w p5js.
+</Box>
 
-asdasfasfasf
+```js
+import * as p5 from 'p5';
 
-```js focus=2
-function lorem(ipsum, dolor = 1) {
-  const sit = ipsum == null ? 0 : ipsum.sit;
-  dolor = sit - amet(dolor);
-  return sit ? consectetur(ipsum) : [];
+function setup() {
+  createCanvas(100, 100);
 }
+
+function draw() {
+  background(0, 255, 0);
+}
+
+window.setup = setup;
+window.draw = draw;
 ```
-
-It works by default with many languages
-
-For example you can pront some shape and color him green, rectangle:
 
 <SandpackWrapper>
   <SandpackProvider
@@ -36,22 +39,34 @@ For example you can pront some shape and color him green, rectangle:
   </SandpackProvider>
 </SandpackWrapper>
 
+<Box mt={5} mb={5}>
+  Przećwicz to sam:
+</Box>
+
 ```js
+import * as p5 from 'p5';
+
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(100, 100);
 }
 
 function draw() {
-
 ```
 
 <ResultInput
-  onChange={props.handleChange}
-  correctValue={correctValue}
-  onSuccess={props.onSuccess}
-  template={codeTemplate}
+  onChange={() => console.log('2')}
+  onSuccess={() => console.log(3)}
+  correctValue={() => console.log(5)}
+  template={() => console.log(7)}
 />
 
 ```js
 }
+
+window.setup = setup;
+window.draw = draw;
 ```
+
+<Button mt={10} mb={10}>
+  Powrót do reszty lekcji
+</Button>

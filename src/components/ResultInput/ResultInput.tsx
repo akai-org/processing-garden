@@ -40,6 +40,11 @@ const ResultInput: FC<ResultInputProps> = ({
           setValue(v);
           onChange?.(template?.(v));
         }}
+        style={{
+          background: 'rgb(55, 56, 47)',
+          borderRadius: '8px',
+          padding: '0 8px',
+        }}
       />
     </div>
   );

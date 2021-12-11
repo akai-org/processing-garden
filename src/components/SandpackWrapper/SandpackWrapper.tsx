@@ -6,18 +6,17 @@ const SandpackWrapper: FC = ({ children }) => {
 
   return (
     <div className={'custom-sandpack-wrapper'}>
-      <Box p={4}>
-        <Button
-          onClick={() => {
-            setVisible(false);
-            setTimeout(() => setVisible(true));
-          }}
-          colorScheme="blue"
-        >
-          Uruchom
-        </Button>
-        {isVisible && children}
-      </Box>
+      <Button
+        mt={5}
+        mb={5}
+        onClick={() => {
+          setVisible(false);
+          setTimeout(() => setVisible(true));
+        }}
+      >
+        Uruchom
+      </Button>
+      {isVisible && children}
     </div>
   );
 };
