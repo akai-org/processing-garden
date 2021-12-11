@@ -8,9 +8,9 @@ export default async function progress(
   res: NextApiResponse,
 ) {
   const session = await getSession({ req });
-  const schema = z
-    .object({ body: z.object({ name: z.string() }) })
-    .safeParse(req);
+  const schema = z.object({ name: z.string() }).safeParse(JSON.parse(req.body));
+
+  console.log({ session, schema });
 
   if (req.method !== 'POST' || !schema.success) {
     return res.status(400).json({ error: 'Invalid input' });
@@ -20,7 +20,7 @@ export default async function progress(
     return res.status(401).json({ error: 'Unauthorized' });
   }
 
-  const { name } = schema.data.body;
+  const { name } = schema.data;
 
   try {
     const user = await db.user.findFirst({
