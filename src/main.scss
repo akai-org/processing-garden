@@ -26,3 +26,15 @@ body {
 .sp-stack {
   margin-left: -8px;
 }
+
+.sp-preview-container {
+  display: block !important;
+}
+
+.sp-stack {
+  width: unset !important;
+}
+
+.sp-preview-actions {
+  display: none !important;
+}
