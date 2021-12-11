@@ -21,10 +21,13 @@ const Lesson: FC = () => {
   const meta = id ? require(`content/learning/${id}/meta.ts`) : null;
 
   const handleSubmit = () => {
-    console.log('asd');
-
     if (meta.correctValue(value)) {
       setFinished(true);
+
+      console.log('call do backendu');
+      handleStepFinished(id as string)
+        .then(console.log)
+        .catch(console.error);
     }
   };
 
@@ -32,6 +35,9 @@ const Lesson: FC = () => {
     setValue(event.target.value);
   };
 
+  const handleNextButton = () => {
+    setFinished(false);
+  };
   if (id)
     return (
       <TutorialContainer
@@ -41,18 +47,9 @@ const Lesson: FC = () => {
         codeTemplate={meta.codeTemplate}
         userValue={value}
         handleSubmit={handleSubmit}
+        handleNextButton={handleNextButton}
       >
-        <Content.default
-          onSuccess={() => {
-            setFinished(true);
-
-            handleStepFinished(id as string)
-              .then(console.log)
-              .catch(console.error);
-          }}
-          isFinished={isFinished}
-          handleChange={handleChange}
-        />
+        <Content.default isFinished={isFinished} handleChange={handleChange} />
       </TutorialContainer>
     );
   return null;

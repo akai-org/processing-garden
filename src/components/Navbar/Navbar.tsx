@@ -18,11 +18,13 @@ import { ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { signOut, useSession } from 'next-auth/react';
+import Image from 'next/image';
 
 const routesIndexes: { [key: string]: number } = {
   '/learning': 0,
   '/games': 1,
   '/sandbox': 2,
+  '/challanges': 3,
 };
 
 export default function Navbar() {
@@ -58,20 +60,28 @@ export default function Navbar() {
                 display="flex"
                 alignItems="center"
               >
-                <div>PLACE FOR LOGO</div>
+                <Box
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                  }}
+                  mr={4}
+                >
+                  <Image src="/logo.png" width={35} height={35} />
+                </Box>
+                <chakra.h1 fontSize="xl">
+                  <Text
+                    display={{ base: 'block', lg: 'inline' }}
+                    w="full"
+                    bgClip="text"
+                    bgGradient="linear(to-r, green.400,purple.500)"
+                    fontWeight="extrabold"
+                  >
+                    Processing Garden
+                  </Text>
+                </chakra.h1>
               </chakra.a>
             </Link>
-            <chakra.h1 fontSize="xl">
-              <Text
-                display={{ base: 'block', lg: 'inline' }}
-                w="full"
-                bgClip="text"
-                bgGradient="linear(to-r, green.400,purple.500)"
-                fontWeight="extrabold"
-              >
-                Processing Garden*
-              </Text>
-            </chakra.h1>
           </HStack>
           <HStack spacing={3} display="flex" alignItems="center">
             {session.status === 'unauthenticated' && (
@@ -138,6 +148,11 @@ export default function Navbar() {
                 <Link href="/sandbox">
                   <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
                     Sandbox
+                  </Tab>
+                </Link>
+                <Link href="/challanges">
+                  <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
+                    Wyzwania
                   </Tab>
                 </Link>
               </TabList>

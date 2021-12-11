@@ -16,6 +16,7 @@ const SandpackWrapper: FC<Props> = ({ children, type, onClick }) => {
     <div className={'custom-sandpack-wrapper'}>
       <Box my={4}>
         <Button
+          mb={1}
           onClick={() => {
             setLoading(true);
             setVisible(false);

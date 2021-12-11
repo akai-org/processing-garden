@@ -6,7 +6,8 @@ import {
 import Editor from '@monaco-editor/react';
 import React from 'react';
 import '@codesandbox/sandpack-react/dist/index.css';
-import Leaderboard, { Record } from 'components/Lleaderboard/Leaderboard';
+import Leaderboard, { Record } from 'components/Leaderboard/Leaderboard';
+import theme from 'editorTheme.json';
 
 const template = `import * as p5 from 'p5';
 
@@ -31,12 +32,16 @@ export default function Test() {
 
   const editor = (
     <Editor
+      options={{ minimap: { enabled: false } }}
+      onMount={(editor, monaco) => {
+        monaco.editor.defineTheme('vitesse-dark-processing-garden', theme);
+        monaco.editor.setTheme('vitesse-dark-processing-garden');
+      }}
       width="50vw"
       height="100vh"
       value={code}
       onChange={(value = '') => setCode(value)}
       language="javascript"
-      theme="vs-dark"
     />
   );
 

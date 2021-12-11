@@ -8,7 +8,9 @@ export default async function progress(
   res: NextApiResponse,
 ) {
   const session = await getSession({ req });
-  const schema = z.object({ name: z.string() }).safeParse(JSON.parse(req.body));
+  const schema = z
+    .object({ name: z.string(), description: z.string() })
+    .safeParse(JSON.parse(req.body));
 
   console.log({ session, schema });
 
@@ -20,7 +22,7 @@ export default async function progress(
     return res.status(401).json({ error: 'Unauthorized' });
   }
 
-  const { name } = schema.data;
+  const { name, description } = schema.data;
 
   try {
     const user = await db.user.findFirst({
@@ -39,6 +41,7 @@ export default async function progress(
       await db.achievement.create({
         data: {
           name,
+          description,
           userId: user?.id!,
         },
       });
