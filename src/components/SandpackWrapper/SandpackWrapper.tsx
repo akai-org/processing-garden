@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { Button } from '@chakra-ui/react';
+import { Box, Button } from '@chakra-ui/react';
 
 const SandpackWrapper: FC = ({ children }) => {
   const [isVisible, setVisible] = useState(false);

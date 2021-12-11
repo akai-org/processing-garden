@@ -2,6 +2,9 @@ const { remarkCodeHike } = require('@code-hike/mdx');
 const theme = require('shiki/themes/monokai.json');
 
 module.exports = {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   experimental: { esmExternals: true },
   webpack(config, options) {
     config.module.rules.push({
