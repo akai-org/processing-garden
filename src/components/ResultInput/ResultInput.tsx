@@ -10,16 +10,9 @@ interface ResultInputProps {
 const ResultInput: FC<ResultInputProps> = ({
   onChange,
   correctValue,
-  onSuccess,
   template,
 }) => {
   const [value, setValue] = useState('');
-
-  useEffect(() => {
-    if (correctValue(value)) {
-      onSuccess?.();
-    }
-  }, [value]);
 
   return (
     <div

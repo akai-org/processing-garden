@@ -20,6 +20,7 @@ const ListCard = ({ content, type }: any) => {
       href={`/learning/${content.index}`}
       key={content.index}
       textDecoration="none!important"
+      _focus={{ outline: 'none' }}
     >
       <Flex pt={10} w="full" alignItems="center" justifyContent="center">
         <Box
@@ -47,16 +48,16 @@ const ListCard = ({ content, type }: any) => {
             </Flex>
 
             <Box mt={2}>
-                <Text
-                  display={{ base: 'block', lg: 'inline' }}
-                  w="full"
-                  bgClip="text"
-                  bgGradient="linear(to-r, green.400,purple.500)"
-                  fontWeight="extrabold"
-                  fontSize="2xl"
-                >
-                  {content.title}
-                </Text>
+              <Text
+                display={{ base: 'block', lg: 'inline' }}
+                w="full"
+                bgClip="text"
+                bgGradient="linear(to-r, green.400,purple.500)"
+                fontWeight="extrabold"
+                fontSize="2xl"
+              >
+                {content.title}
+              </Text>
               <chakra.p
                 mt={2}
                 color={useColorModeValue('gray.600', 'gray.300')}
