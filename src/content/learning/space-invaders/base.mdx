@@ -3,21 +3,10 @@ import { codeTemplate, correctValue } from './test';
 import { codeTemplate as renderTemplate } from './template1';
 import { ResultInput, SandpackWrapper } from '../../../components';
 
-# Code and Focus
+# Czas stworzyć coś niesamowitego!
 
-Code Hike will apply syntax highlighting to any code block
-
-```js focus=2
-function lorem(ipsum, dolor = 1) {
-  const sit = ipsum == null ? 0 : ipsum.sit;
-  dolor = sit - amet(dolor);
-  return sit ? consectetur(ipsum) : [];
-}
-```
-
-It works by default with many languages
-
-For example you can pront some shape and color him green, rectangle:
+W tym tutorialu wspólnymi siłami stworzymy grę typu space-invaders! Od czego zaczniemy?
+Od zobaczenia efektu końcowego - nic tak nie wpływa na motywację!
 
 <div id="space-invaders-preview">
   <SandpackWrapper>
@@ -29,7 +18,7 @@ For example you can pront some shape and color him green, rectangle:
           '/index.js': {
             code: renderTemplate(),
             active: true,
-          }
+          },
         },
       }}
     >
@@ -37,6 +26,32 @@ For example you can pront some shape and color him green, rectangle:
     </SandpackProvider>
   </SandpackWrapper>
 </div>
+
+A teraz przejdźmy do pracy! Nasz statek i przeciwnicy muszą mieć się po czym poruszać!
+Dlatego na sam początek musimy stworzyć miejsce, w którym będą mogły się przemieszczać.
+Służy do tego funkcja createCanvas(), do której możemy przekazać wielkość planszy. Za pomocą
+funkcji background() możemy natomiast zmienić kolor stworzonej planszy. Poniżej możecie zobaczyć
+jak wygląda zastosowanie ich w praktyce:
+
+```js
+function setup() {
+  createCanvas(600, 400);
+}
+
+function draw() {
+  background(200);
+}
+```
+
+Zwróćcie uwagę, że są one umieszczone w funkcjach 'setup()' i 'draw()'. Funkcja 'setup()'
+jest uruchamiana tylko raz, natomiast 'draw()' odpowiada za rysowanie elementów i
+uruchamiana jest wielokrotnie.
+Powyższy kod tworzy prostokąd o rozmiarach 600 pikseli na 400 pikseli i koloruje go na zielono.
+
+Czas na wyzwanie! Uzupełnij poniższy kod tak, aby wyświetlał czerwony prostokąt o rozmiarach
+250 pikseli na 450 pikseli
+
+Pssss! Kolor czerwony ma numer: 
 
 ```js
 function setup() {
