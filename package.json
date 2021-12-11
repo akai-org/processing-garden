@@ -28,6 +28,9 @@
     "react-dom": "17.0.2",
     "sass": "^1.44.0",
     "uuid": "^8.3.2",
+    "y-monaco": "git+https://github.com/roertbb/y-monaco",
+    "y-webrtc": "10.2.2",
+    "yjs": "13.5.22",
     "zod": "^3.11.6"
   },
   "devDependencies": {
