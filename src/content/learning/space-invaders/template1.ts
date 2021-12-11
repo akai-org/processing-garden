@@ -28,14 +28,18 @@ const enemyClass = `class Enemy {
         this.r += 2;
     }
 
-    shiftDown() {
+    shiftDown(ship) {
         this.horizontalSpeed *= -1;
         this.y += this.verticalSpeed;
+        if(this.y > height && ship){
+            window.top.postMessage({type: 'gameResults', state: 'won'}, '*')
+            this.toDelete = true
+        }
     }
 
-    move() {
+    move(ship) {
         this.x += 5*this.horizontalSpeed;
-        this.shiftDown();
+        this.shiftDown(ship);
     }
 
     show() {
@@ -164,11 +168,11 @@ const sceneClass = `class Scene {
             if (enemy.didHit(this.ship)) {
                 this.ship.die();
             }
+            enemy.move(this.ship);
             if (enemy.toDelete) {
                 this.enemies.splice(index, 1);
                 continue;
             }
-            enemy.move();
             if (enemy.x + enemy.r > width || enemy.x - enemy.r < 0) {
                 this.edge = true;
             }
