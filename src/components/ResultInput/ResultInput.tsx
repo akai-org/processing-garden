@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 
 interface ResultInputProps {
   onChange?: any;
@@ -13,8 +13,6 @@ const ResultInput: FC<ResultInputProps> = ({
   onSuccess,
   template,
 }) => {
-  console.log({ onChange, correctValue, onSuccess });
-
   const [value, setValue] = useState('');
 
   useEffect(() => {
