@@ -27,7 +27,7 @@ const Learning: FC = ({ files }: any) => {
 };
 
 export async function getServerSideProps() {
-  const files = fs.readdirSync(path.join('src/content/learning'));
+  const files = fs.readdirSync(path.join('../../content/learning'));
 
   return {
     props: { files },
