@@ -1,27 +1,13 @@
-import { Button } from '@chakra-ui/button';
-import { Text } from '@chakra-ui/layout';
 import { chakra } from '@chakra-ui/system';
 import withAuth from 'hoc/withAuth';
 import { GetServerSideProps } from 'next';
 import { DefaultSession } from 'next-auth';
 import { getSession, useSession } from 'next-auth/react';
-import { v4 } from 'uuid';
 import db from 'db';
-import { Box, useColorModeValue, Grid, GridItem } from '@chakra-ui/react';
+import { Box, useColorModeValue, Grid, Text } from '@chakra-ui/react';
 import { UserCard } from '../components';
 import Image from 'next/image';
 import { achievementIconsMap } from '../components/AchievementWindow/AchievementWindow';
-
-const handleAddAchievement = async (name = v4(), description = v4()) => {
-  return fetch(`/api/achievements`, {
-    method: 'POST',
-    body: JSON.stringify({ name, description }),
-    credentials: 'include',
-  })
-    .then((res) => res.json())
-    .then(console.log)
-    .catch(console.error);
-};
 
 type ProfileProps = {
   user?: DefaultSession['user'];
@@ -52,18 +38,22 @@ function Profile({ user, points, achievements }: ProfileProps) {
         </chakra.h1>
         <Grid templateColumns="repeat(3, 1fr)" gap={6} rowGap="50px" mt={10}>
           {achievements.map((el: any) => (
-            <Box display="flex" alignItems="center" flexDirection="column">
+            <Box
+              key={el.name}
+              display="flex"
+              alignItems="center"
+              flexDirection="column"
+            >
               <Image
                 src={`/svg/${achievementIconsMap.get(el.description)}.svg`}
                 width={90}
                 height={90}
               />
               <Text mt="10px" fontWeight="600">
-                Obiezyświat
+                {el.name}
               </Text>
               <Text mt="10px" textAlign="center">
-                Obiezyświat - odznaka za odwiedzenie wszystkich zakładek w
-                aplikacji.
+                {el.description}
               </Text>
             </Box>
           ))}

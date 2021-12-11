@@ -11,11 +11,26 @@ const AchievementProvider: FC = ({ children }) => {
     description: '',
   });
 
-  const setAchievement = (achievement: AchievementType) => {
-    console.log(achievement);
+  const handleAddAchievement = async (achievement: AchievementType) => {
+    return fetch(`/api/achievements`, {
+      method: 'POST',
+      body: JSON.stringify(achievement),
+      credentials: 'include',
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (!data?.error) {
+          console.log(data);
 
-    setMeta(achievement);
-    setModalVisible(true);
+          setMeta(achievement);
+          setModalVisible(true);
+        }
+      })
+      .catch(console.error);
+  };
+
+  const setAchievement = (achievement: AchievementType) => {
+    handleAddAchievement(achievement);
   };
 
   const closeModal = () => {

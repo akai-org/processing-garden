@@ -11,7 +11,10 @@ import Link from 'next/link';
 import useAchievement from 'hooks/useAchievement';
 
 export const achievementIconsMap = new Map([
+  ['Osiągnięto pierwsze miejsce w tabeli', 'iconsvg-03'],
   ['Wykonano pierwszą lekcję', 'iconsvg-07'],
+  ['Odwiedzono profil', 'iconsvg-13'],
+  ['Ukończono dostępne lekcje', 'iconsvg-17'],
 ]);
 
 export type AchievementType = {

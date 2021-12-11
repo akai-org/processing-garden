@@ -167,7 +167,7 @@ function keyPressed() {
 
 `;
 
-export const codeTemplate = (value) =>
+export const codeTemplate = () =>
   `
 import * as p5 from 'p5';
 
