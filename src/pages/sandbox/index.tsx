@@ -1,9 +1,8 @@
-import { SandpackWrapper } from 'components';
-import withAuth from 'hoc/withAuth';
 import { FC } from 'react';
+import withAuth from 'hoc/withAuth';
 
-const Sandbox: FC = () => {
-  return <SandpackWrapper>Sandpack</SandpackWrapper>;
+const SandboxListing: FC = () => {
+  return <div>SandboxListing</div>;
 };
 
-export default withAuth(Sandbox);
+export default withAuth(SandboxListing);
