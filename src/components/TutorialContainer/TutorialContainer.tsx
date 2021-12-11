@@ -1,8 +1,9 @@
 import { Box, Button, Flex, Heading } from '@chakra-ui/react';
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import Link from 'next/link';
 import SandpackWrapper from 'components/SandpackWrapper/SandpackWrapper';
 import { SandpackPreview, SandpackProvider } from '@codesandbox/sandpack-react';
+import GameModal from 'components/Modal/Modal';
 interface TutorialContainerProps {
   title: string;
   id: string | string[];
@@ -21,13 +22,16 @@ const TutorialContainer: FC<TutorialContainerProps> = ({
   userValue,
   handleSubmit,
 }) => {
+  const [modal, setModal] = useState(false);
+
   useEffect(() => {
     window.addEventListener(
       'message',
       (event) => {
         if (event.origin !== 'https://0-9-13-sandpack.codesandbox.io') return;
         if (event.data.type === 'gameResults') {
-            console.log(event.data.state)
+          console.log(event.data.state);
+          setModal(true);
         }
       },
       false,
@@ -35,6 +39,11 @@ const TutorialContainer: FC<TutorialContainerProps> = ({
   }, []);
   return (
     <Box py={10}>
+      <GameModal
+        isOpen={modal}
+        onClose={() => console.log('something')}
+        message="Ależ wieje"
+      />
       <Heading mb={10}>{title}</Heading>
       {children}
 
