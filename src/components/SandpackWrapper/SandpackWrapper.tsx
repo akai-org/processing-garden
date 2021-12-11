@@ -7,11 +7,12 @@ const SandpackWrapper: FC = ({ children }) => {
   return (
     <div className={'custom-sandpack-wrapper'}>
       <Button
+        mt={5}
+        mb={5}
         onClick={() => {
           setVisible(false);
           setTimeout(() => setVisible(true));
         }}
-        colorScheme="blue"
       >
         Uruchom
       </Button>
