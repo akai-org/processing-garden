@@ -1,9 +1,10 @@
+import { useState } from 'react';
 import Content from './../content/test/test.mdx';
 import { SandpackPreview, SandpackProvider } from '@codesandbox/sandpack-react';
 import '@code-hike/mdx/dist/index.css';
 
 export default function Home() {
-  const [code, setCode] = React.useState('');
+  const [code, setCode] = useState('');
 
   console.log(Content);
 
@@ -16,7 +17,6 @@ export default function Home() {
   return (
     <>
       <Content handleChange={handleChange} onSuccess={onSuccess} />
-
       <SandpackProvider
         customSetup={{
           entry: '/index.js',

@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { ListCard } from '../../components';
 import fs from 'fs';
 import path from 'path';
+import withAuth from 'hoc/withAuth';
 
 const Learning: FC = ({ files }: any) => {
   console.log(files);
@@ -36,4 +37,4 @@ export async function getServerSideProps() {
   };
 }
 
-export default Learning;
+export default withAuth(Learning);

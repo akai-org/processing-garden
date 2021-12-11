@@ -12,27 +12,29 @@ import {
   Tabs,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { ChevronRightIcon } from '@chakra-ui/icons';
+import { Text } from '@chakra-ui/layout';
+import { Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/menu';
+import { ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { signOut, useSession } from 'next-auth/react';
 
 const routesIndexes: { [key: string]: number } = {
-  ['/learning']: 0,
-  ['/games']: 1,
-  ['/sandbox']: 2,
+  '/learning': 0,
+  '/games': 1,
+  '/sandbox': 2,
 };
 
 export default function Navbar() {
-  const bg = useColorModeValue('white', 'gray.800');
-
   const { pathname } = useRouter();
-
   const defaultIndex: number = routesIndexes?.[pathname];
+
+  const session = useSession();
 
   return (
     <Box shadow="md">
       <chakra.header
-        bg={bg}
+        bg={useColorModeValue('white', 'gray.800')}
         borderColor="gray.600"
         borderBottomWidth={1}
         w="full"
@@ -56,26 +58,56 @@ export default function Navbar() {
                 display="flex"
                 alignItems="center"
               >
-                <div>PLCAE FOR LOGO</div>
+                <div>PLACE FOR LOGO</div>
               </chakra.a>
             </Link>
-            <chakra.h1 fontSize="xl">Processing garden</chakra.h1>
+            <chakra.h1 fontSize="xl">
+              <Text
+                display={{ base: 'block', lg: 'inline' }}
+                w="full"
+                bgClip="text"
+                bgGradient="linear(to-r, green.400,purple.500)"
+                fontWeight="extrabold"
+              >
+                Processing Garden*
+              </Text>
+            </chakra.h1>
           </HStack>
           <HStack spacing={3} display="flex" alignItems="center">
-            <Button
-              variant="solid"
-              colorScheme="brand"
-              rightIcon={<ChevronRightIcon />}
-              size="sm"
-            >
-              Log out
-            </Button>
-
-            <Avatar
-              size="sm"
-              name="Dan Abrahmov"
-              src="https://bit.ly/dan-abramov"
-            />
+            {session.status === 'unauthenticated' && (
+              <Link href="/login">
+                <Button
+                  variant="solid"
+                  colorScheme="brand"
+                  rightIcon={<ChevronRightIcon />}
+                  size="sm"
+                >
+                  Login
+                </Button>
+              </Link>
+            )}
+            {session.status === 'authenticated' && (
+              <>
+                <Text>Hello, {session.data.user?.name}!</Text>
+                <Menu>
+                  <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+                    <Avatar
+                      size="sm"
+                      name={session.data.user?.name || ''}
+                      src={session.data.user?.image || ''}
+                    />
+                  </MenuButton>
+                  <MenuList>
+                    <Link href="/profile">
+                      <MenuItem>Profile</MenuItem>
+                    </Link>
+                    <MenuItem onClick={() => signOut({ callbackUrl: '/' })}>
+                      Logout
+                    </MenuItem>
+                  </MenuList>
+                </Menu>
+              </>
+            )}
           </HStack>
         </Flex>
       </chakra.header>
@@ -86,27 +118,32 @@ export default function Navbar() {
         borderWidth={0}
         overflowX="auto"
       >
-        <Container maxW="container.md">
-          <Tabs borderBottomColor="transparent" defaultIndex={defaultIndex}>
-            <TabList>
-              <Link href="/learning">
-                <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
-                  Lekcje
-                </Tab>
-              </Link>
-              <Link href="/games">
-                <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
-                  Gry
-                </Tab>
-              </Link>
-              <Link href="/sandbox">
-                <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
-                  Sandbox
-                </Tab>
-              </Link>
-            </TabList>
-          </Tabs>
-        </Container>
+        {session.status === 'authenticated' && (
+          <Container maxW="full">
+            <Tabs
+              borderBottomColor="transparent"
+              defaultIndex={defaultIndex || 9999}
+            >
+              <TabList>
+                <Link href="/learning">
+                  <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
+                    Lekcje
+                  </Tab>
+                </Link>
+                <Link href="/games">
+                  <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
+                    Gry
+                  </Tab>
+                </Link>
+                <Link href="/sandbox">
+                  <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
+                    Sandbox
+                  </Tab>
+                </Link>
+              </TabList>
+            </Tabs>
+          </Container>
+        )}
       </Flex>
     </Box>
   );
