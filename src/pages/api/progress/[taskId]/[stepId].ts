@@ -32,7 +32,7 @@ export default async function progress(
       data: {
         taskId,
         stepId,
-        userEmail: session?.user?.email,
+        user: { connect: { email: session.user.email } },
       },
     });
 

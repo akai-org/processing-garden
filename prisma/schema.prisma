@@ -8,7 +8,8 @@ datasource db {
 }
 
 model User {
-  email       String        @id
+  id          Int           @id @default(autoincrement())
+  email       String        @unique
   name        String
   image       String
   createdAt   DateTime      @default(now())
@@ -18,12 +19,12 @@ model User {
 }
 
 model Progress {
-  id        String @id @default(uuid())
-  taskId    String // learning, games - snake, tic-tac-toe
-  stepId    Int
-  points    Int    @default(1)
-  user      User   @relation(fields: [userEmail], references: [email])
-  userEmail String
+  id     String @id @default(uuid())
+  taskId String // learning, games - snake, tic-tac-toe
+  stepId Int
+  points Int    @default(1)
+  user   User   @relation(fields: [userId], references: [id])
+  userId Int
 }
 
 model Sandbox {
@@ -35,8 +36,8 @@ model Sandbox {
 model SandboxUser {
   sandbox   Sandbox @relation(fields: [sandboxId], references: [id])
   sandboxId String
-  user      User    @relation(fields: [userEmail], references: [email])
-  userEmail String
+  user      User    @relation(fields: [userId], references: [id])
+  userId    Int
 
-  @@id([userEmail, sandboxId])
+  @@id([userId, sandboxId])
 }

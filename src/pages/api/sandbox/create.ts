@@ -38,9 +38,10 @@ export default async function create(
     });
 
     await db.sandboxUser.create({
+      // @ts-ignore
       data: {
         sandboxId: sandbox.id,
-        userEmail: session.user.email,
+        user: { connect: { email: session?.user?.email } },
       },
     });
 
