@@ -14,25 +14,24 @@ import { WebrtcProvider } from 'y-webrtc';
 // @ts-ignore
 import { MonacoBinding } from 'y-monaco';
 import { useRouter } from 'next/router';
+import { useClipboard } from '@chakra-ui/react';
+import { useToast } from '@chakra-ui/toast';
 
 const colors = ['red', 'blue', 'green', 'yellow', 'orange', 'pink'];
 
-const initCode = `function setup() {
-  createCanvas(300, 300);
+const initCode = `import p5 from 'p5';
+
+const sketch = (s) => {
+    s.setup = () => {
+        s.createCanvas(300, 300);
+    }
+
+    s.draw = () => {
+        s.background(220);
+    }
 }
 
-function draw() {
-  background(220);
-}`;
-
-const templateWrapper = (value: string) => `import * as p5 from 'p5';
-
-${value}
-
-try { window.setup = setup } catch(error) {}
-try { window.draw = draw } catch(error) {}
-try { window.keyPressed = keyPressed } catch(error) {}
-`;
+const sketchInstance = new p5(sketch);`;
 
 type SandboxRendererProps = {
   sandbox: Sandbox;
@@ -64,12 +63,31 @@ const SandboxRenderer = ({ sandbox }: SandboxRendererProps) => {
     );
   }
 
+  const { onCopy } = useClipboard(router.asPath);
+  const toast = useToast();
+
   return (
     <>
       <div>
         <Box p={4}>
-          <Button mr={4}>Zapisz</Button>
-          <Button>Udostępnij link do placu zabaw</Button>
+          <Button mr={4} onClick={() => {}}>
+            Zapisz
+          </Button>
+          <Button
+            onClick={() => {
+              onCopy();
+              toast({
+                title: 'Link został skopiowany do schowka',
+                description:
+                  'Wyśli go do swojego kolegi lub koleżanki, żeby razem pracować w Waszym Studio Twórców',
+                status: 'success',
+                duration: 9000,
+                isClosable: true,
+              });
+            }}
+          >
+            Udostępnij link do placu zabaw
+          </Button>
         </Box>
         <div style={{ display: 'flex' }}>
           <Editor
@@ -89,14 +107,14 @@ const SandboxRenderer = ({ sandbox }: SandboxRendererProps) => {
             onChange={(value = '') => setCode(value)}
             language="javascript"
           />
-          <Box width="50vw">
+          <Box width="50vw" height="calc(100vh - 133px)">
             <SandpackProvider
               customSetup={{
                 entry: '/index.js',
                 dependencies: { p5: 'latest' },
                 files: {
                   '/index.js': {
-                    code: templateWrapper(code),
+                    code,
                     active: true,
                   },
                 },
