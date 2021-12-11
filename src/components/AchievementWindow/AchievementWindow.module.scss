@@ -1,0 +1,35 @@
+.popup {
+    position: absolute;
+    width: 500px;
+    height: 60vh;
+    margin: 0 auto;
+    z-index: 10;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(26, 32, 43);
+    transform-origin: center;
+
+    animation: appear ease-in-out 0.5s forwards;
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translate(-50%, -50%);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translate(-50%, -50%);
+    }
+}
+
+.overlay {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.25);
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 12;
+}

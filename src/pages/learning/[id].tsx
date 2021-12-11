@@ -5,6 +5,7 @@ import { FC, useState } from 'react';
 import db from 'db';
 import { getSession } from 'next-auth/react';
 import { GetServerSideProps } from 'next';
+import useAchievement from 'hooks/useAchievement';
 
 const handleStepFinished = async (id: string) => {
   return fetch(`/api/progress/learning/${id}`, {
@@ -19,7 +20,9 @@ const Lesson: FC = ({ progress }: any) => {
   const router = useRouter();
 
   const { id } = router.query;
-  const wasAlreadyFinished = progress.find((el: any) => el.stepId == id);
+  const wasAlreadyFinished = progress.find((el: any) => el.stepId === id);
+
+  const { setAchievement } = useAchievement();
 
   const Content = id ? require(`content/learning/${id}/base.mdx`) : null;
   const meta = id ? require(`content/learning/${id}/meta.ts`) : null;
@@ -29,6 +32,11 @@ const Lesson: FC = ({ progress }: any) => {
       setFinished(true);
 
       console.log('call do backendu');
+
+      setAchievement({
+        name: 'Początkujący',
+        description: 'Wykonano pierwszą lekcję',
+      });
       handleStepFinished(id as string)
         .then(console.log)
         .catch(console.error);
