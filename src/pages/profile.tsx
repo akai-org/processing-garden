@@ -50,11 +50,10 @@ function Profile({ user, points, achievements }: ProfileProps) {
                 height={90}
               />
               <Text mt="10px" fontWeight="600">
-                Obiezyświat
+                {el.name}
               </Text>
               <Text mt="10px" textAlign="center">
-                Obiezyświat - odznaka za odwiedzenie wszystkich zakładek w
-                aplikacji.
+                {el.description}
               </Text>
             </Box>
           ))}

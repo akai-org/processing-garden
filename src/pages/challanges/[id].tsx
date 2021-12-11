@@ -5,6 +5,7 @@ import { SandpackWrapper } from 'components';
 import ColumnWrapper from 'components/ColumnWrapper/ColumnWrapper';
 import Leaderboard, { Record } from 'components/Leaderboard/Leaderboard';
 import withAuth from 'hoc/withAuth';
+import useAchievement from 'hooks/useAchievement';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { FC, useState } from 'react';
@@ -73,21 +74,26 @@ const Challange: FC = () => {
   const [records, setRecords] = useState(recordsInitial);
   const session = useSession();
 
+  const { setAchievement } = useAchievement();
+
   const handleSubmit = () => {
-    setTimeout(
-      () =>
-        setRecords((records) => [
-          {
-            user: {
-              avatarUrl: 'some URL',
-              displayName: session.data?.user?.name!,
-            },
-            duration: 143,
+    setTimeout(() => {
+      setRecords((records) => [
+        {
+          user: {
+            avatarUrl: 'some URL',
+            displayName: session.data?.user?.name!,
           },
-          ...records,
-        ]),
-      1000,
-    );
+          duration: 143,
+        },
+        ...records,
+      ]);
+
+      setAchievement({
+        description: 'Osiągnięto pierwsze miejsce w tabeli',
+        name: 'Zwycięzca',
+      });
+    }, 1000);
   };
 
   const { id } = router.query;
