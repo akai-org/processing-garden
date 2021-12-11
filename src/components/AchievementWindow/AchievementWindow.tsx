@@ -10,7 +10,7 @@ import styles from './AchievementWindow.module.scss';
 import Link from 'next/link';
 import useAchievement from 'hooks/useAchievement';
 
-const achievementIconsMap = new Map([
+export const achievementIconsMap = new Map([
   ['Wykonano pierwszą lekcję', 'iconsvg-07'],
 ]);
 

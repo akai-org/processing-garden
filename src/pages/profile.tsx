@@ -10,6 +10,7 @@ import db from 'db';
 import { Box, useColorModeValue, Grid, GridItem } from '@chakra-ui/react';
 import { UserCard } from '../components';
 import Image from 'next/image';
+import { achievementIconsMap } from '../components/AchievementWindow/AchievementWindow';
 
 const handleAddAchievement = async (name = v4(), description = v4()) => {
   return fetch(`/api/achievements`, {
@@ -49,9 +50,22 @@ function Profile({ user, points, achievements }: ProfileProps) {
         >
           Twoje osiągnięcia:
         </chakra.h1>
-        <Grid templateColumns="repeat(3, 1fr)" gap={6} mt={10}>
+        <Grid templateColumns="repeat(3, 1fr)" gap={6} rowGap="50px" mt={10}>
           {achievements.map((el: any) => (
-            <Image src="/svg/iconsvg-01.svg" width={90} height={90} />
+            <Box display="flex" alignItems="center" flexDirection="column">
+              <Image
+                src={`/svg/${achievementIconsMap.get(el.description)}.svg`}
+                width={90}
+                height={90}
+              />
+              <Text mt="10px" fontWeight="600">
+                Obiezyświat
+              </Text>
+              <Text mt="10px" textAlign="center">
+                Obiezyświat - odznaka za odwiedzenie wszystkich zakładek w
+                aplikacji.
+              </Text>
+            </Box>
           ))}
         </Grid>
       </Box>
