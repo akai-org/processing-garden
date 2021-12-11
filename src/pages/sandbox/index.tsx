@@ -62,8 +62,6 @@ const SandboxListing = ({ sandboxes }: SandboxListingProps) => {
   );
 };
 
-export default withAuth(SandboxListing);
-
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const session = await getSession({ req });
   const user = await db.user.findFirst({
@@ -86,3 +84,5 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     },
   };
 };
+
+export default withAuth(SandboxListing);

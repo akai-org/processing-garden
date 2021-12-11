@@ -53,8 +53,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const files = fs.readdirSync(
     path.join(process.cwd(), 'src/content/learning'),
   );
-  console.log(2, user);
-  console.log(3, progress);
+
   return {
     props: { files, progress },
   };
