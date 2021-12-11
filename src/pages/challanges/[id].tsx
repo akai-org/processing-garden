@@ -5,6 +5,7 @@ import { SandpackWrapper } from 'components';
 import ColumnWrapper from 'components/ColumnWrapper/ColumnWrapper';
 import Leaderboard, { Record } from 'components/Leaderboard/Leaderboard';
 import withAuth from 'hoc/withAuth';
+import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { FC, useState } from 'react';
 import theme from '../../editorTheme.json';
@@ -70,13 +71,17 @@ const Challange: FC = () => {
   const router = useRouter();
   const [code, setCode] = useState(renderTemplate);
   const [records, setRecords] = useState(recordsInitial);
+  const session = useSession();
 
   const handleSubmit = () => {
     setTimeout(
       () =>
         setRecords((records) => [
           {
-            user: { avatarUrl: 'some URL', displayName: 'Danny' },
+            user: {
+              avatarUrl: 'some URL',
+              displayName: session.data?.user?.name!,
+            },
             duration: 143,
           },
           ...records,

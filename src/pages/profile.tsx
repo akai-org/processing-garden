@@ -1,26 +1,12 @@
-import { Button } from '@chakra-ui/button';
-import { Text } from '@chakra-ui/layout';
 import { chakra } from '@chakra-ui/system';
 import withAuth from 'hoc/withAuth';
 import { GetServerSideProps } from 'next';
 import { DefaultSession } from 'next-auth';
 import { getSession, useSession } from 'next-auth/react';
-import { v4 } from 'uuid';
 import db from 'db';
-import { Box, useColorModeValue, Grid, GridItem } from '@chakra-ui/react';
+import { Box, useColorModeValue, Grid } from '@chakra-ui/react';
 import { UserCard } from '../components';
 import Image from 'next/image';
-
-const handleAddAchievement = async (name = v4(), description = v4()) => {
-  return fetch(`/api/achievements`, {
-    method: 'POST',
-    body: JSON.stringify({ name, description }),
-    credentials: 'include',
-  })
-    .then((res) => res.json())
-    .then(console.log)
-    .catch(console.error);
-};
 
 type ProfileProps = {
   user?: DefaultSession['user'];
