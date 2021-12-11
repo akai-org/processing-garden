@@ -17,12 +17,21 @@ const ListCard = ({ content, type }: any) => {
       fontSize="sm"
       fontWeight="700"
       rounded="md"
-      href={`/learning/${content.index}`}
+      href={
+        type === 'Tutorial'
+          ? `/learning/${content.index}`
+          : `/challanges/${content.index}`
+      }
       key={content.index}
       textDecoration="none!important"
       _focus={{ outline: 'none' }}
     >
-      <Flex pt={10} alignItems="center" justifyContent="center">
+      <Flex
+        pt={10}
+        alignItems="center"
+        justifyContent="center"
+        height="fit-content"
+      >
         <Box
           width="100%"
           rounded="lg"
@@ -31,6 +40,7 @@ const ListCard = ({ content, type }: any) => {
           cursor="pointer"
           display="flex"
           alignItems="center"
+          height="fit-content"
         >
           <Box width="100%" mx="auto" px={8} py={4} mb={30}>
             <Flex>
