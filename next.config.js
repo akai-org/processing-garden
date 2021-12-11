@@ -1,5 +1,5 @@
 const { remarkCodeHike } = require('@code-hike/mdx');
-const theme = require('shiki/themes/monokai.json');
+const theme = require('./src/editorTheme.json');
 
 module.exports = {
   eslint: {
