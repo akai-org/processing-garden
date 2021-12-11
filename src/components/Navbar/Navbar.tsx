@@ -137,7 +137,7 @@ export default function Navbar() {
                 </Link>
                 <Link href="/sandbox">
                   <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
-                    Sandbox
+                    Studio twórców
                   </Tab>
                 </Link>
               </TabList>
