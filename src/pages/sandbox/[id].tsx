@@ -3,7 +3,6 @@ import { getSession } from 'next-auth/react';
 import { useState, useRef } from 'react';
 import db from 'db';
 import { Sandbox } from '.prisma/client';
-import ColumnWrapper from 'components/ColumnWrapper/ColumnWrapper';
 import Editor from '@monaco-editor/react';
 import theme from 'editorTheme.json';
 import withAuth from 'hoc/withAuth';
@@ -66,13 +65,13 @@ const SandboxRenderer = ({ sandbox }: SandboxRendererProps) => {
   }
 
   return (
-    <div>
-      <Box p={4}>
-        <Button mr={4}>Zapisz</Button>
-        <Button>Udostępnij link do placu zabaw</Button>
-      </Box>
-      <ColumnWrapper
-        leftContent={
+    <>
+      <div>
+        <Box p={4}>
+          <Button mr={4}>Zapisz</Button>
+          <Button>Udostępnij link do placu zabaw</Button>
+        </Box>
+        <div style={{ display: 'flex' }}>
           <Editor
             options={{ minimap: { enabled: false } }}
             onMount={(editor, monaco) => {
@@ -90,25 +89,34 @@ const SandboxRenderer = ({ sandbox }: SandboxRendererProps) => {
             onChange={(value = '') => setCode(value)}
             language="javascript"
           />
-        }
-        rightContent={
-          <SandpackProvider
-            customSetup={{
-              entry: '/index.js',
-              dependencies: { p5: 'latest' },
-              files: {
-                '/index.js': {
-                  code: templateWrapper(code),
-                  active: true,
+          <Box width="50vw">
+            <SandpackProvider
+              customSetup={{
+                entry: '/index.js',
+                dependencies: { p5: 'latest' },
+                files: {
+                  '/index.js': {
+                    code: templateWrapper(code),
+                    active: true,
+                  },
                 },
-              },
-            }}
-          >
-            <SandpackPreview />
-          </SandpackProvider>
+              }}
+            >
+              <SandpackPreview />
+            </SandpackProvider>
+          </Box>
+        </div>
+        <style global>{` 
+        .sp-preview-container,
+        .sp-preview-iframe,
+        .sp-stack {
+          width: 500px !important;
+          height: 500px !important;
+          display: block !important;
         }
-      />
-    </div>
+        `}</style>
+      </div>
+    </>
   );
 };
 
