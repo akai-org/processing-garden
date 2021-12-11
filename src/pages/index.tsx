@@ -12,11 +12,7 @@ import {
 export default function Home() {
   return (
     <Box px={8} py={24} mx="auto">
-      <Box
-        w={{ base: 'full', md: 11 / 12, xl: 9 / 12 }}
-        mx="auto"
-        textAlign={{ base: 'left', md: 'center' }}
-      >
+      <Box w={{ base: 'full' }} mx="auto" textAlign={'center'}>
         <chakra.h1
           mb={6}
           fontSize={{ base: '4xl', md: '6xl' }}

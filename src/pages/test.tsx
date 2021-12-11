@@ -6,8 +6,7 @@ import {
 import Editor from '@monaco-editor/react';
 import React from 'react';
 import '@codesandbox/sandpack-react/dist/index.css';
-import ColumnWrapper from 'components/ColumnWrapper/ColumnWrapper';
-import Leaderboard, { User, Record } from 'components/Lleaderboard/Leaderboard';
+import Leaderboard, { Record } from 'components/Lleaderboard/Leaderboard';
 
 const template = `import * as p5 from 'p5';
 
