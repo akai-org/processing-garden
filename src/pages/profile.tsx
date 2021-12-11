@@ -7,10 +7,10 @@ import { DefaultSession } from 'next-auth';
 import { getSession, useSession } from 'next-auth/react';
 import { v4 } from 'uuid';
 
-const handleAddAchievement = async (name = v4()) => {
+const handleAddAchievement = async (name = v4(), description = v4()) => {
   return fetch(`/api/achievements`, {
     method: 'POST',
-    body: JSON.stringify({ name }),
+    body: JSON.stringify({ name, description }),
     credentials: 'include',
   })
     .then((res) => res.json())
