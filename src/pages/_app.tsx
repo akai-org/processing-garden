@@ -7,6 +7,7 @@ import { theme } from '../theme';
 import Head from 'next/head';
 
 import '../main.scss';
+import AchievementProvider from 'context/AchievementContext';
 
 const routesWithoutLayout = ['/login'];
 
@@ -21,13 +22,15 @@ export default function App({ Component, pageProps, ...appProps }: AppProps) {
       </Head>
       <SessionProvider session={pageProps.session}>
         <ChakraProvider theme={theme}>
-          {routesWithoutLayout.includes(currentRoute) ? (
-            <Component {...pageProps} />
-          ) : (
-            <Layout fullWidth={currentRoute === '/challanges/[id]'}>
+          <AchievementProvider>
+            {routesWithoutLayout.includes(currentRoute) ? (
               <Component {...pageProps} />
-            </Layout>
-          )}
+            ) : (
+              <Layout fullWidth={currentRoute === '/challanges/[id]'}>
+                <Component {...pageProps} />
+              </Layout>
+            )}
+          </AchievementProvider>
         </ChakraProvider>
       </SessionProvider>
     </>
