@@ -1,4 +1,3 @@
-import React from 'react';
 import Content from './../content/test/test.mdx';
 import { SandpackPreview, SandpackProvider } from '@codesandbox/sandpack-react';
 import '@code-hike/mdx/dist/index.css';

@@ -7,7 +7,6 @@ import {
   Flex,
   HStack,
   IconButton,
-  Spacer,
   Tab,
   TabList,
   Tabs,
@@ -19,7 +18,7 @@ import Link from 'next/link';
 
 const routesIndexes: { [key: string]: number } = {
   ['/learning']: 0,
-  ['/challanges']: 1,
+  ['/games']: 1,
   ['/sandbox']: 2,
 };
 
@@ -92,12 +91,12 @@ export default function Navbar() {
             <TabList>
               <Link href="/learning">
                 <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
-                  Learning
+                  Lekcje
                 </Tab>
               </Link>
               <Link href="/games">
                 <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
-                  Games
+                  Gry
                 </Tab>
               </Link>
               <Link href="/sandbox">
