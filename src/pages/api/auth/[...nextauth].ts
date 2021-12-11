@@ -9,6 +9,9 @@ export default NextAuth({
       clientSecret: process.env.CLIENT_SECRET || '',
     }),
   ],
+  pages: {
+    signIn: '/login',
+  },
   callbacks: {
     async signIn({ account, profile }) {
       const user = await db.user.findFirst({
