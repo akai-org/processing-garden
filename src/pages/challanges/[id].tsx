@@ -3,6 +3,7 @@ import ColumnWrapper from 'components/ColumnWrapper/ColumnWrapper';
 import withAuth from 'hoc/withAuth';
 import { useRouter } from 'next/router';
 import { FC, useState } from 'react';
+import theme from '../../editorTheme.json';
 
 // const handleStepFinished = async (id: string) => {
 //   return fetch(`/api/progress/learning/${id}`, {
@@ -17,6 +18,8 @@ const Challange: FC = () => {
 
   const { id } = router.query;
 
+  console.log(router.pathname);
+
   const meta = id ? require(`content/challanges/${id}/meta.ts`) : null;
   console.log(meta);
 
@@ -26,7 +29,7 @@ const Challange: FC = () => {
         leftContent={
           <Editor
             width="50vw"
-            height="100vh"
+            height="calc(100vh - 133px)"
             value={code}
             onChange={(value = '') => setCode(value)}
             language="javascript"
