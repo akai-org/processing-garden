@@ -145,14 +145,14 @@ export default function Navbar() {
                     Gry
                   </Tab>
                 </Link>
-                <Link href="/sandbox">
-                  <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
-                    Studio twórców
-                  </Tab>
-                </Link>
                 <Link href="/challanges">
                   <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
                     Wyzwania
+                  </Tab>
+                </Link>
+                <Link href="/sandbox">
+                  <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
+                    Studio twórców
                   </Tab>
                 </Link>
               </TabList>

@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { useState } from 'react';
 import withAuth from 'hoc/withAuth';
 import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/react';
@@ -8,8 +8,7 @@ import { ListCard } from 'components';
 import { Flex, Text } from '@chakra-ui/layout';
 import { useRouter } from 'next/router';
 import { Input } from '@chakra-ui/input';
-
-import { Sandbox, SandboxUser } from '.prisma/client';
+import { Sandbox } from '.prisma/client';
 
 type SandboxListingProps = {
   sandboxes: {
@@ -22,9 +21,6 @@ type SandboxListingProps = {
 
 const SandboxListing = ({ sandboxes }: SandboxListingProps) => {
   const [name, setName] = useState('');
-
-  console.log({ sandboxes });
-
   const router = useRouter();
 
   async function handleCreateSandbox() {
@@ -54,10 +50,10 @@ const SandboxListing = ({ sandboxes }: SandboxListingProps) => {
       {sandboxes.map(({ sandbox }, index) => (
         <ListCard
           key={sandbox.id}
+          href={`/sandbox/${sandbox.id}`}
           content={{
             title: sandbox.name,
-            description: 'description',
-            index: 1,
+            index: index + 1,
           }}
           type="Plac zabaw"
         />
