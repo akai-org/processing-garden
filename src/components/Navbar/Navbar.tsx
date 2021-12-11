@@ -95,9 +95,9 @@ export default function Navbar() {
                   Learning
                 </Tab>
               </Link>
-              <Link href="/challanges">
+              <Link href="/games">
                 <Tab py={4} m={0} _focus={{ boxShadow: 'none' }}>
-                  Challanges
+                  Games
                 </Tab>
               </Link>
               <Link href="/sandbox">
