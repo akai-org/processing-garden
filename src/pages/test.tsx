@@ -31,6 +31,7 @@ export default function Test() {
 
   const editor = (
     <Editor
+
       width="50vw"
       height="100vh"
       value={code}

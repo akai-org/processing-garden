@@ -1,10 +1,13 @@
 import React, { FC, useState } from 'react';
 
+import styles from './ResultInput.module.css';
+
 interface ResultInputProps {
   onChange?: any;
   onSuccess?: () => void;
   correctValue?: any;
   template?: (value?: any) => string;
+  tabs: number;
 }
 
 const ResultInput: FC<ResultInputProps> = ({
@@ -12,6 +15,7 @@ const ResultInput: FC<ResultInputProps> = ({
   correctValue,
   onSuccess,
   template,
+  tabs = 0,
 }) => {
   console.log({ onChange, correctValue, onSuccess });
 
@@ -32,19 +36,16 @@ const ResultInput: FC<ResultInputProps> = ({
         marginBottom: '-20px',
       }}
     >
-      <input
-        type="text"
+      <textarea
+        // type="text"
         value={value}
         onChange={(event) => {
           const v = event.target.value;
           setValue(v);
           onChange?.(template?.(v));
         }}
-        style={{
-          background: 'rgb(55, 56, 47)',
-          borderRadius: '8px',
-          padding: '0 8px',
-        }}
+        className={styles['code-input']}
+        style={{ marginLeft: `${tabs * 20}px` }}
       />
     </div>
   );

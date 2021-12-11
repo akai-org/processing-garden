@@ -1,5 +1,6 @@
 import { ResultInput } from '../../components';
 import { correctValue, codeTemplate } from './game.template';
+import Editor from '@monaco-editor/react';
 
 ```js
 import * as p5 from 'p5';
@@ -11,15 +12,29 @@ import * as p5 from 'p5';
   function draw() {
 ```
 
-<ResultInput
-  onChange={props.handleChange}
-  correctValue={correctValue}
-  onSuccess={props.onSuccess}
-  template={codeTemplate}
-/>
+<div
+  style={{
+    background: 'rgb(39, 40, 34)',
+    marginTop: '-20px',
+    marginBottom: '-20px',
+  }}
+>
+  <Editor
+    style={{
+      background: 'rgb(39, 40, 34)',
+      paddingLeft: '32px',
+      marginTop: '-20px',
+      marginBottom: '-20px',
+    }}
+    width="100%"
+    height="400px"
+    language="javascript"
+    theme="vs-dark"
+  />
+</div>
 
 ```js
-}
+  }
 
   window.setup = setup;
   window.draw = draw;

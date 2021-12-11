@@ -1,0 +1,10 @@
+.code-input {
+  background: rgb(55, 56, 47);
+  border-radius: 8px;
+  padding: 1px 8px;
+  width: 50%;
+}
+
+.code-input:focus {
+  outline: none;
+}
