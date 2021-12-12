@@ -1,1 +1,1 @@
-export const title = 'Wyposa swój statek';
+export const title = 'Wyposaż swój statek';

@@ -34,7 +34,6 @@ export default function Home() {
           letterSpacing={{ base: 'normal', md: 'tight' }}
           color={useColorModeValue('gray.900', 'gray.100')}
         >
-          One{' '}
           <Text
             display={{ base: 'block', lg: 'inline' }}
             w="full"
@@ -45,7 +44,7 @@ export default function Home() {
             Processing Garden
           </Text>
           <br />
-          to connect all
+          aby łączyć wszystkich poprzez gry!
         </chakra.h1>
         <chakra.p
           px={{ base: 0, lg: 24 }}
@@ -53,7 +52,7 @@ export default function Home() {
           fontSize={{ base: 'lg', md: 'xl' }}
           color={useColorModeValue('gray.600', 'gray.300')}
         >
-          Ucz, graj, baw się, zdobywaj punkty i osiągnięcia oraz rywalizuj z
+          Ucz, graj, baw się, zdobywaj punkty, osiągnięcia oraz rywalizuj z
           innymi programując!
         </chakra.p>
         <Stack

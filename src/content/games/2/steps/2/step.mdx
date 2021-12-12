@@ -10,11 +10,10 @@ import Editor from '@monaco-editor/react';
 ```js
 function setup() {
   const scene = new Scene();
-  scene.ship = new Ship()
-  /*leć w prawo*/
-  scene.ship.setDir(1)
-  /*leć w lewo*/
-  scene.ship.setDir(-1)
+  /*tworzenie nowego pocisku*/
+  const missile = new Missile(scene.ship.x, height);
+  /*dodawanie pocisku*/
+  scene.missiles.push(missile);
 }
 
 function keyPressed() {
