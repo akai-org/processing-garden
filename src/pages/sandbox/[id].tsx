@@ -66,11 +66,33 @@ const SandboxRenderer = ({ sandbox }: SandboxRendererProps) => {
   const { onCopy } = useClipboard(router.asPath);
   const toast = useToast();
 
+  const handleSaveSandbox = async (id: string, code: string) => {
+    return fetch(`/api/sandbox/${id}`, {
+      method: 'POST',
+      body: JSON.stringify({ code }),
+      credentials: 'include',
+    })
+      .then((res) => {
+        if (res.ok) {
+          toast({
+            title: 'Stan Studia Twórców został zapisany',
+            status: 'success',
+            duration: 5000,
+            isClosable: true,
+          });
+        }
+      })
+      .catch(console.error);
+  };
+
   return (
     <>
       <div>
         <Box p={4}>
-          <Button mr={4} onClick={() => {}}>
+          <Button
+            mr={4}
+            onClick={() => handleSaveSandbox(router?.query?.id as string, code)}
+          >
             Zapisz
           </Button>
           <Button
@@ -81,7 +103,7 @@ const SandboxRenderer = ({ sandbox }: SandboxRendererProps) => {
                 description:
                   'Wyśli go do swojego kolegi lub koleżanki, żeby razem pracować w Waszym Studio Twórców',
                 status: 'success',
-                duration: 9000,
+                duration: 5000,
                 isClosable: true,
               });
             }}
@@ -197,6 +219,8 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   });
 
   const uuid = req?.url?.split('/')?.[2];
+
+  console.log({ req });
 
   const sandbox = await db.sandbox.findFirst({
     where: { id: { equals: uuid } },

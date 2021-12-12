@@ -5,16 +5,8 @@ import db from 'db';
 
 export default async function save(req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req });
-  const schema = z
-    .object({
-      query: z.object({
-        id: z.string(),
-      }),
-      body: z.object({
-        code: z.string(),
-      }),
-    })
-    .safeParse(req);
+
+  const schema = z.object({ code: z.string() }).safeParse(JSON.parse(req.body));
 
   if (req.method !== 'POST' || !schema.success) {
     return res.status(400).json({ error: 'Invalid input' });
@@ -24,13 +16,12 @@ export default async function save(req: NextApiRequest, res: NextApiResponse) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
 
-  const { id } = schema.data.query;
-  const { code } = schema.data.body;
+  const { code } = schema.data;
 
   try {
     await db.sandbox.update({
-      where: { id },
       data: { code },
+      where: { id: req.query.id as string },
     });
 
     res.status(200).json({ success: true });
