@@ -1,7 +1,7 @@
 export const title = 'Twój pierwszy rysunek';
 
 export const description =
-  'W tej lekcji nauczysz się jak stworzysz koło. Będziesz miał okazje zdobyć punkty za wykonanie ćwiczenia w którym odtworzysz pokazany tutorial.';
+  'W tej lekcji nauczysz się jak stworzyć koło. Będziesz miał okazje zdobyć punkty za wykonanie ćwiczenia w którym odtworzysz pokazany tutorial.';
 
 export const correctValue = (value: string) =>
   value === 'ellipse(50, 50, 60, 60);' || value === 'ellipse(50, 50, 60, 60)';
