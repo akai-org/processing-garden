@@ -12,6 +12,8 @@ const AchievementProvider: FC = ({ children }) => {
   });
 
   const handleAddAchievement = async (achievement: AchievementType) => {
+    console.log('asd');
+
     return fetch(`/api/achievements`, {
       method: 'POST',
       body: JSON.stringify(achievement),
