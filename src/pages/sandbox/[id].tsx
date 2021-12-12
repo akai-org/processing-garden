@@ -19,26 +19,26 @@ import { useToast } from '@chakra-ui/toast';
 
 const colors = ['red', 'blue', 'green', 'yellow', 'orange', 'pink'];
 
-const initCode = `import p5 from 'p5';
+// const initCode = `import p5 from 'p5';
 
-const sketch = (s) => {
-    s.setup = () => {
-        s.createCanvas(300, 300);
-    }
+// const sketch = (s) => {
+//     s.setup = () => {
+//         s.createCanvas(300, 300);
+//     }
 
-    s.draw = () => {
-        s.background(220);
-    }
-}
+//     s.draw = () => {
+//         s.background(220);
+//     }
+// }
 
-const sketchInstance = new p5(sketch);`;
+// const sketchInstance = new p5(sketch);`;
 
 type SandboxRendererProps = {
   sandbox: Sandbox;
 };
 
 const SandboxRenderer = ({ sandbox }: SandboxRendererProps) => {
-  const [code, setCode] = useState(initCode);
+  const [code, setCode] = useState(sandbox.code);
   const editorRef = useRef();
   const router = useRouter();
 
@@ -99,7 +99,13 @@ const SandboxRenderer = ({ sandbox }: SandboxRendererProps) => {
               );
               monaco.editor.setTheme('vitesse-dark-processing-garden');
               editorRef.current = editor;
-              connect().then(() => setCode(sandbox.code));
+              connect().then(() => {
+                setTimeout(() => {
+                  if (!editor.getModel().getValue()) {
+                    editor.getModel().setValue(sandbox.code);
+                  }
+                }, 1000);
+              });
             }}
             width="50vw"
             height="calc(100vh - 133px)"
@@ -132,6 +138,52 @@ const SandboxRenderer = ({ sandbox }: SandboxRendererProps) => {
           height: 500px !important;
           display: block !important;
         }
+
+        #monaco-editor {
+          width: 100%;
+          height: 600px;
+          border: 1px solid #ccc;
+        }
+        .yRemoteSelection {
+          background-color: rgb(250, 129, 0, 0.5);
+        }        
+        .yRemoteSelectionHead {
+          position: absolute;
+          border-left: orange solid 2px;
+          border-top: orange solid 2px;
+          border-bottom: orange solid 2px;
+          height: 100%;
+          box-sizing: border-box;
+        }
+        .yRemoteSelectionHead::after {
+          position: absolute;
+          content: " ";
+          border: 3px solid orange;
+          border-radius: 4px;
+          left: -4px;
+          top: -5px;
+        }
+
+        .yRemoteSelection.yellow { background-color: #7b893180; }
+        .yRemoteSelection.blue { background-color: #00aafa80; }
+        .yRemoteSelection.green { background-color: #208b4180; }
+        .yRemoteSelection.red { background-color: #e3111180; }
+        .yRemoteSelection.orange { background-color: #e3851180; }
+        .yRemoteSelection.ping { background-color: #9c11e380; }
+
+        .yRemoteSelectionHead.yellow { border-color: #7b893180 }
+        .yRemoteSelectionHead.blue { border-color: #00aafa80 }
+        .yRemoteSelectionHead.green { border-color: #208b4180 }
+        .yRemoteSelectionHead.red { border-color: #e3111180 }
+        .yRemoteSelectionHead.orange { border-color: #e3851180 }
+        .yRemoteSelectionHead.ping { border-color: #9c11e380 }
+
+        .yRemoteSelectionHead::after.yellow { border-color: #7b893180 }
+        .yRemoteSelectionHead::after.blue { border-color: #00aafa80 }
+        .yRemoteSelectionHead::after.green { border-color: #208b4180 }
+        .yRemoteSelectionHead::after.red { border-color: #e3111180 }
+        .yRemoteSelectionHead::after.orange { border-color: #e3851180 }
+        .yRemoteSelectionHead::after.ping { border-color: #9c11e380 }
         `}</style>
       </div>
     </>
