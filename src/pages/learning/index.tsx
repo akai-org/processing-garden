@@ -12,7 +12,7 @@ const Learning: FC = ({ files, progress }: any) => {
   return (
     <>
       <Heading size="lg" textAlign="center">
-        Opanuj game development!
+        Opanuj tworzenie gier!
       </Heading>
       {files?.map((dirName: string, i: number) => {
         const {
