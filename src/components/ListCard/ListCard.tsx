@@ -23,6 +23,7 @@ const ListCardContent = ({
       alignItems="center"
       justifyContent="center"
       position="relative"
+      height="fit-content"
     >
       {wasFinished && (
         <Box position="absolute" top="60px" right="50px">
@@ -42,7 +43,7 @@ const ListCardContent = ({
         display="flex"
         alignItems="center"
       >
-        <Box width="100%" mx="auto" px={8} py={4} mb={30}>
+        <Box width="100%" mx="auto" px={8} py={4} mb={3}>
           <Flex>
             <Text
               px={3}
